@@ -5,14 +5,11 @@
   "description": "Order in Windows Branch",
   "type": "object",
   "properties": {
-    "id": {
-      "type": "string"
-    },
     "openwinversion": {
       "type": "string"
     },
-    "dictionaries": {
-      "$ref": "#/definitions/Dictionaries"
+    "info": {
+      "$ref": "#/definitions/Info"
     },
     "definitions": {
       "type": "object",
@@ -32,6 +29,9 @@
         }
       }
     },
+    "dictionaries": {
+      "$ref": "#/definitions/Dictionaries"
+    },
     "constructions": {
       "type": "array",
       "description": "--- Альтернативно items, apertures, component, RoughOpening, определить что первично, конструкция или проем",
@@ -42,6 +42,18 @@
   },
   "required": ["id", "openwinversion"],
   "definitions": {
+    "Info": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "locale": {
+          "type": "string"
+        }
+      },
+      "required": ["id"]
+    },
     "Point": {
       "type": "object",
       "description": "--- Описание геометрической точки 3D, если координата отсутствует то она равно 0, поэтому убрали required",
@@ -229,7 +241,7 @@
           "type": "string"
         }
       },
-      "required": ["article", "vendorId"]
+      "required": ["vendorId", "article"]
     },
     "ProfileType": {
       "type": "string",
@@ -257,7 +269,7 @@
           "type": "string"
         }
       },
-      "required": ["vendorId", "name"]
+      "required": ["id", "vendorId", "name"]
     },
     "Profile": {
       "type": "object",
@@ -305,7 +317,8 @@
         "h1": {
           "type": "number"
         }
-      }
+      },
+      "required": ["id", "vendorArticle", "profileType"]
     },
     "Reinforcement": {
       "type": "object",

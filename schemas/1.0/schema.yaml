@@ -184,8 +184,8 @@ definitions:
       name:
         type: string
     required:
-      - article
       - vendorId
+      - article
 
   ProfileType:
     type: string
@@ -209,6 +209,7 @@ definitions:
       name:
         type: string
     required:
+      - id
       - vendorId
       - name
 
@@ -244,6 +245,10 @@ definitions:
         type: number
       h1:
         type: number
+    required:
+      - id
+      - vendorArticle
+      - profileType
 
   Reinforcement:
     type: object

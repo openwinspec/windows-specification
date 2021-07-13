@@ -1,6 +1,6 @@
 {
-  "id": "3dfc8657-c2dc-450f-8d4c-017b85d25af7",
   "openwinversion": "2.0.0",
+  "info": { "id": "3dfc8657-c2dc-450f-8d4c-017b85d25af7", "locale": "RU" },
   "dictionaries": {
     "sync": true,
     "vendors": [
