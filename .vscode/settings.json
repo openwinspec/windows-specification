@@ -1,0 +1,29 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/examples/1.0/*.model.json"],
+      "url": "/schemas/1.0/schema.json"
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace"
+  },
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "keep",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    }
+  },
+  "markdown.extension.toc.updateOnSave": false,
+  "yaml.schemas": {
+    "https://json-schema.org/draft-04/schema": ["schemas/1.0/schema.yaml"]
+  }
+}
