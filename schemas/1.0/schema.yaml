@@ -29,7 +29,7 @@ properties:
     items:
       $ref: '#/definitions/Construction'
 required:
-  - id
+  - info
   - openwinversion
 definitions:
   Info:
@@ -272,6 +272,31 @@ definitions:
       - id
       - vendorArticle
 
+  ColorType:
+    description: -- Тип кодирования цвета (классификатор)
+    type: string
+    enum:
+      - PVC
+      - Renolit
+      - RAL
+
+  Color:
+    type: object
+    properties:
+      colorId:
+        type: number
+      colorName:
+        type: string
+      colorCode:
+        type: string
+      colorType:
+        $ref: '#/definitions/ColorType'
+    required:
+      - colorId
+      - colorName
+      - colorCode
+      - colorType
+
   Panel:
     type: object
     description: -- Заполнения
@@ -455,19 +480,19 @@ definitions:
     properties:
       sillStub:
         type: boolean
-        description: -- есть подставочный профиль
+        description: Наличие подставочного профиля
       rabbetStub:
         type: boolean
-        description: -- есть шпунтовый профиль (для ПВХ)
-      hiddenDrain:
+        description: Наличие заглушки паза под штапик (для ПВХ)
+      drained:
         type: boolean
-        description: -- скрытый дренаж (=true), иначе открытый (=false)
-      size:
-        type: string
-        description: -- размер рамы ширина*высота, например, 1500*1400
+        description: Наличие дренажа
+      compensationHole:
+        type: boolean
+        description: Наличие компенсационных отверстий
     requred:
       - sillStub
-      - hiddenDrain
+      - drained
 
   SashOpeningType:
     type: string
@@ -593,6 +618,25 @@ definitions:
         description: --- Ссылка на профиль из справочника
       cuttings:
         $ref: '#/definitions/BeamCuttings'
+      drain:
+        type: string
+        enum:
+          - NotAvailable
+          - Available
+          - Hidden
+        description: тип дренажирования на балке
+      compensationHole:
+        type: boolean
+        description: наличие компенсационных отверстий на балке
+      baseColor:
+        $ref: '#/definitions/Color'
+        description: -- цвет основы (для ПВХ)
+      internalColor:
+        $ref: '#/definitions/Color'
+        description: -- цвет ламинации/покраски изнутри/сверху
+      externalColor:
+        $ref: '#/definitions/Color'
+        description: -- цвет ламинации/покраски снаружи
 
   Component:
     type: object
