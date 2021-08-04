@@ -432,7 +432,7 @@
               "profileId": { "value": "1001" },
               "features": {
                 "commonFeature": { "color": "blue" },
-                "frameFeature": { "sillStub": false }
+                "frameFeature": { "sillStub": false, "drained": false }
               },
               "beams": [
                 {
@@ -646,7 +646,7 @@
               "componentType": "Frame",
               "features": {
                 "commonFeature": { "color": "white" },
-                "frameFeature": { "sillStub": true }
+                "frameFeature": { "sillStub": true, "drained": false }
               },
               "geometryId": { "value": "6301" },
               "profileId": { "value": "1001" },
