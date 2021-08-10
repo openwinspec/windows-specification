@@ -95,6 +95,8 @@ definitions:
       closed:
         description: замкнут ли периметр
         type: boolean
+    required:
+      - sides
 
   Locale:
     description: -- Один из вариантов реализации локализации
@@ -128,41 +130,61 @@ definitions:
         type: boolean
       vendors:
         type: array
+        description: -- uniqueItems keyword exist in 2019-09 json schema, instead use unique
+        unique:
+          - id
         items:
           $ref: '#/definitions/Vendor'
       profileSystems:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/ProfileSystem'
       profiles:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Profile'
       reinforcement:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Reinforcement'
       spacer:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Spacer'
       glasses:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Glass'
       glazing:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Glazing'
-      panel:
+      panels:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Panel'
       colors:
         type: array
+        unique:
+          - id
         items:
           $ref: '#/definitions/Color'
-
+    additionalProperties: false
+      
   VendorType:
     type: string
     enum:
@@ -193,8 +215,11 @@ definitions:
   VendorMaterial:
     type: object
     properties:
-      vendorId:
+      vendor:
         $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/vendors
+          key: id
       article:
         description: Артикул в учетных системах поставщика
         type: string
@@ -202,7 +227,7 @@ definitions:
         description: Название в учетных системах поставщика
         type: string
     required:
-      - vendorId
+      - vendor
       - article
       - name
 
@@ -223,13 +248,16 @@ definitions:
     properties:
       id:
         $ref: '#/definitions/ID'
-      vendorId:
+      vendor:
         $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/vendors
+          key: id
       name:
         type: string
     required:
       - id
-      - vendorId
+      - vendor
       - name
 
   Profile:
@@ -242,8 +270,11 @@ definitions:
         $ref: '#/definitions/VendorMaterial'
       profileType:
         $ref: '#/definitions/ProfileType'
-      profileSystemId:
+      profileSystem:
         $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/profileSystems
+          key: id
       a:
         type: number
       b:
@@ -270,7 +301,6 @@ definitions:
         $ref: '#/definitions/ID'
       externalColor:
         $ref: '#/definitions/ID'
-
     required:
       - id
       - vendorArticle
@@ -340,6 +370,8 @@ definitions:
         description: -- Вес 1 м2
         type: number
     required:
+      - id
+      - vendorArticle
       - thickness
 
   GlassType:
@@ -380,6 +412,8 @@ definitions:
       Ug:
         type: number
     required:
+      - id
+      - vendorArticle
       - glassType
       - thickness
 
@@ -400,6 +434,11 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Spacer'
+    required:
+      - id
+      - vendorArticle
+      - thickness
+      - glasses
 
   SpacerMaterial:
     type: string
@@ -431,6 +470,10 @@ definitions:
       weight:
         description: Вес 1 п.м.
         type: number
+    required:
+      - id
+      - vendorArticle
+      - size
 
   HardwareType:
     type: object
@@ -556,18 +599,24 @@ definitions:
     properties:
       id:
         $ref: '#/definitions/ID'
-      glazingId:
-        description: Ссылка на id из справочника glazing
+      glazing:
         $ref: '#/definitions/ID'
+        description: Ссылка на id из справочника glazing
+        dictionary:
+          path: /dictionaries/glazing
+          key: id
 
   PanelFeature:
     type: object
     properties:
       id:
         $ref: '#/definitions/ID'
-      panelId:
-        description: Ссылка на id из справочника panel
+      panel:
         $ref: '#/definitions/ID'
+        description: Ссылка на id из справочника panels
+        dictionary:
+          path: /dictionaries/panels
+          key: id
 
   VirtualFeature:
     type: object
@@ -613,6 +662,7 @@ definitions:
         type: number
       material:
         type: array
+        description: todo - Изменить название поля
         items:
           $ref: '#/definitions/VendorMaterial'
 
@@ -640,9 +690,11 @@ definitions:
     type: object
     description: --- Балка профиля
     properties:
-      profileId:
+      profile:
         $ref: '#/definitions/ID'
-        description: --- Ссылка на профиль из справочника
+        dictionary:
+          path: /dictionaries/profiles
+          key: id
       cuttings:
         $ref: '#/definitions/BeamCuttings'
       drain:
@@ -679,9 +731,12 @@ definitions:
       splitterId:
         description: --- ссылка на геометрию сплиттера, как это объединить с geometryId ?
         $ref: '#/definitions/ID'
-      profileId:
-        description: --- если применяется для всех балок компонента
+      profile:
         $ref: '#/definitions/ID'
+        description: --- если применяется для всех балок компонента
+        dictionary:
+          path: /dictionaries/profiles
+          key: id
       beams:
         type: array
         description: --- ex profile_polygon
@@ -702,8 +757,11 @@ definitions:
       elementType:
         description: --- Тип элемента
         $ref: '#/definitions/ProductType'
-      profileSystemId:
+      profileSystem:
         $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/profileSystems
+          key: id
       geometry:
         type: array
         items:
@@ -729,12 +787,16 @@ definitions:
         $ref: '#/definitions/ID'
       geometry:
         $ref: '#/definitions/Segment'
-      profileId:
+      profile:
         $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/profiles
+          key: id
       cutting:
         $ref: '#/definitions/BeamCuttings'
     required:
       - id
+      - profile
 
   Construction:
     type: object
