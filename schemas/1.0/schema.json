@@ -121,7 +121,8 @@
           "description": "замкнут ли периметр",
           "type": "boolean"
         }
-      }
+      },
+      "required": ["sides"]
     },
     "Locale": {
       "description": "-- Один из вариантов реализации локализации",
@@ -161,54 +162,64 @@
         },
         "vendors": {
           "type": "array",
+          "description": "-- uniqueItems keyword exist in 2019-09 json schema, instead use unique",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Vendor"
           }
         },
         "profileSystems": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/ProfileSystem"
           }
         },
         "profiles": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Profile"
           }
         },
         "reinforcement": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Reinforcement"
           }
         },
         "spacer": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Spacer"
           }
         },
         "glasses": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Glass"
           }
         },
         "glazing": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Glazing"
           }
         },
-        "panel": {
+        "panels": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Panel"
           }
         },
         "colors": {
           "type": "array",
+          "unique": ["id"],
           "items": {
             "$ref": "#/definitions/Color"
           }
@@ -248,8 +259,12 @@
     "VendorMaterial": {
       "type": "object",
       "properties": {
-        "vendorId": {
-          "$ref": "#/definitions/ID"
+        "vendor": {
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/vendors",
+            "key": "id"
+          }
         },
         "article": {
           "description": "Артикул в учетных системах поставщика",
@@ -260,7 +275,7 @@
           "type": "string"
         }
       },
-      "required": ["vendorId", "article", "name"]
+      "required": ["vendor", "article", "name"]
     },
     "ProfileType": {
       "type": "string",
@@ -281,14 +296,18 @@
         "id": {
           "$ref": "#/definitions/ID"
         },
-        "vendorId": {
-          "$ref": "#/definitions/ID"
+        "vendor": {
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/vendors",
+            "key": "id"
+          }
         },
         "name": {
           "type": "string"
         }
       },
-      "required": ["id", "vendorId", "name"]
+      "required": ["id", "vendor", "name"]
     },
     "Profile": {
       "type": "object",
@@ -303,8 +322,12 @@
         "profileType": {
           "$ref": "#/definitions/ProfileType"
         },
-        "profileSystemId": {
-          "$ref": "#/definitions/ID"
+        "profileSystem": {
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/profileSystems",
+            "key": "id"
+          }
         },
         "a": {
           "type": "number"
@@ -421,7 +444,7 @@
           "type": "number"
         }
       },
-      "required": ["thickness"]
+      "required": ["id", "vendorArticle", "thickness"]
     },
     "GlassType": {
       "type": "string",
@@ -471,7 +494,7 @@
           "type": "number"
         }
       },
-      "required": ["glassType", "thickness"]
+      "required": ["id", "vendorArticle", "glassType", "thickness"]
     },
     "Glazing": {
       "type": "object",
@@ -497,7 +520,8 @@
             "$ref": "#/definitions/Spacer"
           }
         }
-      }
+      },
+      "required": ["id", "vendorArticle", "thickness", "glasses"]
     },
     "SpacerMaterial": {
       "type": "string",
@@ -536,7 +560,8 @@
           "description": "Вес 1 п.м.",
           "type": "number"
         }
-      }
+      },
+      "required": ["id", "vendorArticle", "size"]
     },
     "HardwareType": {
       "type": "object",
@@ -682,9 +707,13 @@
         "id": {
           "$ref": "#/definitions/ID"
         },
-        "glazingId": {
+        "glazing": {
+          "$ref": "#/definitions/ID",
           "description": "Ссылка на id из справочника glazing",
-          "$ref": "#/definitions/ID"
+          "dictionary": {
+            "path": "/dictionaries/glazing",
+            "key": "id"
+          }
         }
       }
     },
@@ -694,9 +723,13 @@
         "id": {
           "$ref": "#/definitions/ID"
         },
-        "panelId": {
-          "description": "Ссылка на id из справочника panel",
-          "$ref": "#/definitions/ID"
+        "panel": {
+          "$ref": "#/definitions/ID",
+          "description": "Ссылка на id из справочника panels",
+          "dictionary": {
+            "path": "/dictionaries/panels",
+            "key": "id"
+          }
         }
       }
     },
@@ -761,6 +794,7 @@
         },
         "material": {
           "type": "array",
+          "description": "todo - Изменить название поля",
           "items": {
             "$ref": "#/definitions/VendorMaterial"
           }
@@ -792,9 +826,12 @@
       "type": "object",
       "description": "--- Балка профиля",
       "properties": {
-        "profileId": {
+        "profile": {
           "$ref": "#/definitions/ID",
-          "description": "--- Ссылка на профиль из справочника"
+          "dictionary": {
+            "path": "/dictionaries/profiles",
+            "key": "id"
+          }
         },
         "cuttings": {
           "$ref": "#/definitions/BeamCuttings"
@@ -840,9 +877,13 @@
           "description": "--- ссылка на геометрию сплиттера, как это объединить с geometryId ?",
           "$ref": "#/definitions/ID"
         },
-        "profileId": {
+        "profile": {
+          "$ref": "#/definitions/ID",
           "description": "--- если применяется для всех балок компонента",
-          "$ref": "#/definitions/ID"
+          "dictionary": {
+            "path": "/dictionaries/profiles",
+            "key": "id"
+          }
         },
         "beams": {
           "type": "array",
@@ -871,8 +912,12 @@
           "description": "--- Тип элемента",
           "$ref": "#/definitions/ProductType"
         },
-        "profileSystemId": {
-          "$ref": "#/definitions/ID"
+        "profileSystem": {
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/profileSystems",
+            "key": "id"
+          }
         },
         "geometry": {
           "type": "array",
@@ -906,14 +951,18 @@
         "geometry": {
           "$ref": "#/definitions/Segment"
         },
-        "profileId": {
-          "$ref": "#/definitions/ID"
+        "profile": {
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/profiles",
+            "key": "id"
+          }
         },
         "cutting": {
           "$ref": "#/definitions/BeamCuttings"
         }
       },
-      "required": ["id"]
+      "required": ["id", "profile"]
     },
     "Construction": {
       "type": "object",

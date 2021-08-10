@@ -55,7 +55,7 @@
         "weight": 0.3,
         "size": 15.5,
         "vendorArticle": {
-          "vendorId": { "value": "4", "prefix": "100" },
+          "vendor": { "value": "4" },
           "article": "100002",
           "name": "Рамка дистанционная алюминиевая 15.5"
         }
@@ -66,7 +66,7 @@
         "size": 16.5,
         "thickness": 0.35,
         "vendorArticle": {
-          "vendorId": { "value": "4" },
+          "vendor": { "value": "4" },
           "article": "100001",
           "name": "Рамкас дистанционная теплая 16.5"
         },
@@ -76,17 +76,17 @@
     "profileSystems": [
       {
         "id": { "value": "1700" },
-        "vendorId": { "value": "1" },
+        "vendor": { "value": "1" },
         "name": "REHAU SELECTED 60"
       },
       {
         "id": { "value": "1701" },
-        "vendorId": { "value": "1" },
+        "vendor": { "value": "1" },
         "name": "REHAU SELECTED 70"
       },
       {
         "id": { "value": "1702" },
-        "vendorId": { "value": "1" },
+        "vendor": { "value": "1" },
         "name": "REHAU Дполнительные профили"
       }
     ],
@@ -94,9 +94,9 @@
       {
         "id": { "value": "1001" },
         "profileType": "Frame",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "554008",
           "name": "Рама 60 Delight Design"
         },
@@ -114,9 +114,9 @@
       {
         "id": { "value": "1002" },
         "profileType": "Sash",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "554018",
           "name": "Створка 58 Delight Design"
         },
@@ -135,9 +135,9 @@
       {
         "id": { "value": "12001" },
         "profileType": "Sash",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "554018",
           "name": "Створка 58 Delight Design в качестве рамы"
         },
@@ -155,9 +155,9 @@
       {
         "id": { "value": "10022" },
         "profileType": "Frame",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "554018",
           "name": "Створка 58 Delight Design с отрезанным наплавом со стороны фурнитуры паза в качестве рамы"
         },
@@ -175,9 +175,9 @@
       {
         "id": { "value": "1003" },
         "profileType": "Mullion",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "554028",
           "name": "Импост 78 Delight Design"
         },
@@ -195,9 +195,9 @@
       {
         "id": { "value": "1004" },
         "profileType": "Connector",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "639571",
           "name": "Профиль соединительный 3",
           "w": 60,
@@ -210,9 +210,9 @@
       {
         "id": { "value": "1005" },
         "profileType": "GlazingBead",
-        "profileSystemId": { "value": "1700" },
+        "profileSystem": { "value": "1700" },
         "vendorArticle": {
-          "vendorId": { "value": "1" },
+          "vendor": { "value": "1" },
           "article": "560600",
           "name": "Штапик 14,5"
         },
@@ -230,7 +230,7 @@
         "glassType": "Float Glass",
         "thickness": 4,
         "vendorArticle": {
-          "vendorId": { "value": "6" },
+          "vendor": { "value": "6" },
           "article": "2000",
           "name": "Стекло 4 мм"
         }
@@ -240,7 +240,7 @@
         "thickness": 6,
         "glassType": "Float Glass",
         "vendorArticle": {
-          "vendorId": { "value": "6" },
+          "vendor": { "value": "6" },
           "article": "2001",
           "name": "Стекло 6 мм"
         }
@@ -253,7 +253,7 @@
         "vendorArticle": {
           "article": "2002",
           "name": "4 mm Planibel Clear",
-          "vendorId": { "value": "6" }
+          "vendor": { "value": "6" }
         },
         "Lr": 8,
         "Lt": 90,
@@ -261,13 +261,13 @@
         "Ug": 5.8
       }
     ],
-    "panel": [
+    "panels": [
       {
         "id": { "value": "1" },
         "thickness": 24,
         "vendorArticle": {
           "article": "1593",
-          "vendorId": { "value": "7" },
+          "vendor": { "value": "7" },
           "name": "Сэндвич панель белая 24 мм односторонняя"
         },
         "weight": 5
@@ -277,26 +277,47 @@
       {
         "id": { "value": "1" },
         "vendorArticle": {
-          "vendorId": { "value": "5" },
+          "vendor": { "value": "5" },
           "article": "01",
           "name": "Стеклопакет 4-16-4"
         },
         "thickness": 24,
         "glasses": [
           {
+            "id": { "value": "1" },
             "thickness": 4,
             "glassType": "Float Glass",
             "vendorArticle": {
-              "vendorId": { "value": "6" },
+              "vendor": { "value": "6" },
               "article": "1000",
               "name": "AGC Float Glass"
             },
             "weight": 12,
             "Lt": 2
           },
-          { "thickness": 4, "glassType": "Float Glass" }
+          {
+            "id": { "value": "2" },
+            "thickness": 4,
+            "glassType": "Float Glass",
+            "vendorArticle": {
+              "vendor": { "value": "6" },
+              "article": "1000",
+              "name": "AGC Float Glass"
+            }
+          }
         ],
-        "spacer": [{ "size": 16, "material": "Aluminum" }]
+        "spacer": [
+          {
+            "id": { "value": "1" },
+            "material": "Aluminum",
+            "size": 16,
+            "vendorArticle": {
+              "vendor": { "value": "4" },
+              "article": "100-01",
+              "name": "Warmex warm spacer 16"
+            }
+          }
+        ]
       }
     ]
   },
@@ -348,7 +369,7 @@
         {
           "id": { "value": "6001" },
           "elementType": "Window",
-          "profileSystemId": { "value": "1700" },
+          "profileSystem": { "value": "1700" },
           "geometry": [
             {
               "id": { "value": "6101" },
@@ -429,14 +450,14 @@
             {
               "componentType": "Frame",
               "geometryId": { "value": "6101" },
-              "profileId": { "value": "1001" },
+              "profile": { "value": "1001" },
               "features": {
                 "commonFeature": { "color": "blue" },
-                "frameFeature": { "sillStub": false }
+                "frameFeature": { "sillStub": false, "drained": false }
               },
               "beams": [
                 {
-                  "profileId": { "value": "6101" },
+                  "profile": { "value": "1001" },
                   "cuttings": { "start_ext": "Angle45", "end_ext": "Angle45" },
                   "baseColorId": { "value": "1" },
                   "internalColorId": { "value": "1" },
@@ -461,7 +482,7 @@
                   },
                   "geometryId": { "value": "6101" },
                   "splitterId": { "value": "6900" },
-                  "profileId": { "value": "1003" },
+                  "profile": { "value": "1003" },
                   "beams": [
                     {
                       "cuttings": {
@@ -478,7 +499,7 @@
                         "sashFeature": { "openingType": "Casement" }
                       },
                       "geometryId": { "value": "6102" },
-                      "profileId": { "value": "1002" },
+                      "profile": { "value": "1002" },
                       "beams": [
                         {
                           "cuttings": {
@@ -516,33 +537,33 @@
                               "features": {
                                 "glazingFeature": {
                                   "id": { "value": "1" },
-                                  "glazingId": { "value": "1" }
+                                  "glazing": { "value": "1" }
                                 }
                               },
                               "glazingBeads": [
                                 {
-                                  "profileId": { "value": "9999" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "9999" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "9999" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "9999" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
@@ -568,7 +589,7 @@
         {
           "id": { "value": "6002" },
           "elementType": "Door",
-          "profileSystemId": { "value": "1700" },
+          "profileSystem": { "value": "1700" },
           "geometry": [
             {
               "id": { "value": "6301" },
@@ -646,10 +667,10 @@
               "componentType": "Frame",
               "features": {
                 "commonFeature": { "color": "white" },
-                "frameFeature": { "sillStub": true }
+                "frameFeature": { "sillStub": true, "drained": false }
               },
               "geometryId": { "value": "6301" },
-              "profileId": { "value": "1001" },
+              "profile": { "value": "1001" },
               "beams": [
                 {
                   "cuttings": { "start_ext": "Angle45", "end_ext": "Angle45" }
@@ -672,7 +693,7 @@
                     "sashFeature": { "openingType": "FixedCasement" }
                   },
                   "splitterId": { "value": "6950" },
-                  "profileId": { "value": "1002" },
+                  "profile": { "value": "1002" },
                   "beams": [
                     {
                       "cuttings": {
@@ -708,7 +729,7 @@
                       },
                       "geometryId": { "value": "6301" },
                       "splitterId": { "value": "6950" },
-                      "profileId": { "value": "1003" },
+                      "profile": { "value": "1003" },
                       "beams": [
                         {
                           "cuttings": {
@@ -727,33 +748,33 @@
                               "features": {
                                 "glazingFeature": {
                                   "id": { "value": "1" },
-                                  "glazingId": { "value": "1" }
+                                  "glazing": { "value": "1" }
                                 }
                               },
                               "glazingBeads": [
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
@@ -772,33 +793,33 @@
                               "features": {
                                 "panelFeature": {
                                   "id": { "value": "1" },
-                                  "panelId": { "value": "1" }
+                                  "panel": { "value": "1" }
                                 }
                               },
                               "glazingBeads": [
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
                                   }
                                 },
                                 {
-                                  "profileId": { "value": "1005" },
+                                  "profile": { "value": "1005" },
                                   "cuttings": {
                                     "start_ext": "Angle45",
                                     "end_ext": "Angle45"
@@ -820,7 +841,7 @@
       "connections": [
         {
           "id": { "value": "7000" },
-          "profileId": { "value": "1004" },
+          "profile": { "value": "1004" },
           "geometry": {
             "start": { "x": 1500 },
             "end": { "x": 1500, "y": 1500 }
