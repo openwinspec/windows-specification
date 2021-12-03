@@ -1,7 +1,7 @@
 $schema: http://json-schema.org/draft-07/schema#
-$id: 'https://openwinspec.org/orderschema.json'
-title: 'Order'
-description: 'Order in Windows Branch'
+$id: https://openwinspec.org/orderschema.json
+title: Order
+description: Order in Windows Branch
 type: object
 properties:
   openwinversion:
@@ -25,7 +25,8 @@ properties:
     $ref: '#/definitions/Dictionaries'
   constructions:
     type: array
-    description: --- Альтернативно items, apertures, component, RoughOpening, определить что первично, конструкция или проем
+    description: --- Альтернативно items, apertures, component, RoughOpening,
+      определить что первично, конструкция или проем
     items:
       $ref: '#/definitions/Construction'
 required:
@@ -39,6 +40,7 @@ definitions:
         type: string
       prefix:
         type: string
+    additionalProperties: false
     required:
       - value
 
@@ -50,12 +52,15 @@ definitions:
         type: string
       locale:
         type: string
+    additionalProperties: false
     required:
       - id
 
   Point:
     type: object
-    description: --- Описание геометрической точки 3D, если координата отсутствует то она равно 0, поэтому убрали required
+    description:
+      --- Описание геометрической точки 3D, если координата отсутствует
+      то она равно 0, поэтому убрали required
     properties:
       id:
         $ref: '#/definitions/ID'
@@ -65,6 +70,7 @@ definitions:
         type: number
       z:
         type: number
+    additionalProperties: false
 
   Segment:
     type: object
@@ -78,6 +84,7 @@ definitions:
         $ref: '#/definitions/Point'
       arcHeight:
         type: number
+    additionalProperties: false
     required:
       - start
       - end
@@ -95,6 +102,7 @@ definitions:
       closed:
         description: замкнут ли периметр
         type: boolean
+    additionalProperties: false
     required:
       - sides
 
@@ -147,12 +155,6 @@ definitions:
           - id
         items:
           $ref: '#/definitions/Profile'
-      reinforcement:
-        type: array
-        unique:
-          - id
-        items:
-          $ref: '#/definitions/Reinforcement'
       spacer:
         type: array
         unique:
@@ -184,7 +186,7 @@ definitions:
         items:
           $ref: '#/definitions/Color'
     additionalProperties: false
-      
+
   VendorType:
     type: string
     enum:
@@ -207,6 +209,7 @@ definitions:
         $ref: '#/definitions/LocaleString'
       web:
         type: string
+    additionalProperties: false
     required:
       - id
       - vendorType
@@ -218,7 +221,7 @@ definitions:
       vendor:
         $ref: '#/definitions/ID'
         dictionary:
-          path: /dictionaries/vendors
+          path: dictionaries/vendors
           key: id
       article:
         description: Артикул в учетных системах поставщика
@@ -226,6 +229,7 @@ definitions:
       name:
         description: Название в учетных системах поставщика
         type: string
+    additionalProperties: false
     required:
       - vendor
       - article
@@ -236,12 +240,14 @@ definitions:
     description: --- Как описать типы на разных языках ???
     enum:
       - Frame
+      - Sliding Frame
       - Sash
       - Mullion
       - GlazingBead
       - Reinforcement
       - PseudoMullion
-      - Connector
+      - Coupling
+      - Extension
 
   ProfileSystem:
     type: object
@@ -255,6 +261,7 @@ definitions:
           key: id
       name:
         type: string
+    additionalProperties: false
     required:
       - id
       - vendor
@@ -295,38 +302,20 @@ definitions:
         type: number
       h1:
         type: number
+      n:
+        description: Количество направляющих для раздвижных коробок
+        type: number
       baseColor:
         $ref: '#/definitions/ID'
       internalColor:
         $ref: '#/definitions/ID'
       externalColor:
         $ref: '#/definitions/ID'
+    additionalProperties: false
     required:
       - id
       - vendorArticle
       - profileType
-
-  Reinforcement:
-    type: object
-    description: --- Или армирование описываем отдельно ???
-    properties:
-      id:
-        $ref: '#/definitions/ID'
-      vendorArticle:
-        $ref: '#/definitions/VendorMaterial'
-      ix:
-        type: number
-      iy:
-        type: number
-      h:
-        type: number
-      h1:
-        type: number
-      weight:
-        type: number
-    required:
-      - id
-      - vendorArticle
 
   ColorType:
     description: -- Тип кодирования цвета (классификатор)
@@ -347,6 +336,7 @@ definitions:
         type: string
       colorType:
         $ref: '#/definitions/ColorType'
+    additionalProperties: false
     required:
       - id
       - colorName
@@ -369,6 +359,7 @@ definitions:
       weight:
         description: -- Вес 1 м2
         type: number
+    additionalProperties: false
     required:
       - id
       - vendorArticle
@@ -376,7 +367,8 @@ definitions:
 
   GlassType:
     type: string
-    description: -- Тип стекла, ниже из классификации по https://www.doubleglazingnetwork.com/blog/window-glass-types/
+    description: -- Тип стекла, ниже из классификации по
+      https://www.doubleglazingnetwork.com/blog/window-glass-types/
     enum:
       - Float Glass
       - Laminated Safety Glass
@@ -390,7 +382,8 @@ definitions:
 
   Glass:
     type: object
-    description: -- Стекло, характеристики Lt-Ug см. например https://www.agc-yourglass.com/en-UK/brands/energy
+    description: -- Стекло, характеристики Lt-Ug см. например
+      https://www.agc-yourglass.com/en-UK/brands/energy
     properties:
       id:
         $ref: '#/definitions/ID'
@@ -411,6 +404,7 @@ definitions:
         type: number
       Ug:
         type: number
+    additionalProperties: false
     required:
       - id
       - vendorArticle
@@ -434,6 +428,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Spacer'
+    additionalProperties: false
     required:
       - id
       - vendorArticle
@@ -442,7 +437,12 @@ definitions:
 
   SpacerMaterial:
     type: string
-    description: -- Материал дистанционной рамки, см. например https://www.glastory.net/insulating-glass-spacers-all-you-wanted-to-know/ и https://glazingmag.ru/distantsionnaya-ramka-dlya-steklopaketa-vidy-i-naznachenie/ и https://okna-blitz.ru/drugoe/distantsionnye-ramki-dlya-steklopaketov-razmery-i-vidy.html
+    description: -- Материал дистанционной рамки, см. например
+      https://www.glastory.net/insulating-glass-spacers-all-you-wanted-to-know/
+      и
+      https://glazingmag.ru/distantsionnaya-ramka-dlya-steklopaketa-vidy-i-naznachenie/
+      и
+      https://okna-blitz.ru/drugoe/distantsionnye-ramki-dlya-steklopaketov-razmery-i-vidy.html
     enum:
       - Aluminum
       - Warm edge
@@ -470,6 +470,7 @@ definitions:
       weight:
         description: Вес 1 п.м.
         type: number
+    additionalProperties: false
     required:
       - id
       - vendorArticle
@@ -521,6 +522,7 @@ definitions:
         $ref: '#/definitions/MullionFeature'
       fillingFeature:
         $ref: '#/definitions/FillingFeature'
+    additionalProperties: false
     oneOf:
       - required:
           - frameFeature
@@ -543,6 +545,7 @@ definitions:
       externalColor:
         type: string
         description: -- цвет ламинации/покраски извне
+    additionalProperties: false
 
   FrameFeature:
     type: object
@@ -559,6 +562,7 @@ definitions:
       compensationHole:
         type: boolean
         description: Наличие компенсационных отверстий
+    additionalProperties: false
     required:
       - sillStub
       - drained
@@ -577,6 +581,7 @@ definitions:
     properties:
       openingType:
         $ref: '#/definitions/SashOpeningType'
+    additionalProperties: false
     required:
       - openingType
 
@@ -586,6 +591,7 @@ definitions:
       calcWind:
         type: boolean
         description: -- Расчет ветровой нагрузки
+    additionalProperties: false
 
   FillingType:
     type: string
@@ -605,6 +611,7 @@ definitions:
         dictionary:
           path: /dictionaries/glazing
           key: id
+    additionalProperties: false
 
   PanelFeature:
     type: object
@@ -617,6 +624,7 @@ definitions:
         dictionary:
           path: /dictionaries/panels
           key: id
+    additionalProperties: false
 
   VirtualFeature:
     type: object
@@ -640,6 +648,7 @@ definitions:
           - panelFeature
       - required:
           - virtualFeature
+    additionalProperties: false
 
   FillingFeature:
     type: object
@@ -654,6 +663,7 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Beam'
+    additionalProperties: false
 
   GlazingBeadFeature:
     type: object
@@ -665,6 +675,7 @@ definitions:
         description: todo - Изменить название поля
         items:
           $ref: '#/definitions/VendorMaterial'
+    additionalProperties: false
 
   CuttingType:
     type: string
@@ -685,6 +696,7 @@ definitions:
         $ref: '#/definitions/CuttingType'
       end_int:
         $ref: '#/definitions/CuttingType'
+    additionalProperties: false
 
   Beam:
     type: object
@@ -716,6 +728,7 @@ definitions:
       externalColorId:
         $ref: '#/definitions/ID'
         description: -- цвет ламинации/покраски снаружи
+    additionalProperties: false
 
   Component:
     type: object
@@ -747,6 +760,34 @@ definitions:
         description: --- ex product_elements
         items:
           $ref: '#/definitions/Component'
+    additionalProperties: false
+
+  Splitter:
+    type: object
+    properties:
+      type:
+        type: string
+        enum:
+          - fixed
+          - virtual
+      segment:
+        $ref: '#/definitions/Segment'
+    additionalProperties: false
+
+  Wire:
+    type: object
+    properties:
+      geometry:
+        type: array
+        description: Добавить признак виртуальности
+        items:
+          $ref: '#/definitions/Polygon'
+      splitters:
+        type: array
+        description: --- ex segments
+        items:
+          $ref: '#/definitions/Splitter'
+    additionalProperties: false
 
   Element:
     type: object
@@ -762,24 +803,21 @@ definitions:
         dictionary:
           path: /dictionaries/profileSystems
           key: id
-      geometry:
+      wires:
         type: array
         items:
-          $ref: '#/definitions/Polygon'
-      splitters:
-        type: array
-        description: --- ex segments
-        items:
-          $ref: '#/definitions/Segment'
+          $ref: '#/definitions/Wire'
       components:
         type: array
         items:
           $ref: '#/definitions/Component'
     required:
       - id
-      - geometry
+      - wires
+      - components
+    additionalProperties: false
 
-  Connection:
+  Coupling:
     type: object
     description: --- Описание сединителя элементов конструкции
     properties:
@@ -788,6 +826,7 @@ definitions:
       geometry:
         $ref: '#/definitions/Segment'
       profile:
+        description: -- профильный узел !?
         $ref: '#/definitions/ID'
         dictionary:
           path: /dictionaries/profiles
@@ -796,7 +835,31 @@ definitions:
         $ref: '#/definitions/BeamCuttings'
     required:
       - id
+      - geometry
       - profile
+    additionalProperties: false
+
+  Extension:
+    type: object
+    description: ---- Описание расширителей
+    properties:
+      id:
+        $ref: '#/definitions/ID'
+      geometry:
+        $ref: '#/definitions/Polygon'
+      profile:
+        description: -- профильный узел !?
+        $ref: '#/definitions/ID'
+        dictionary:
+          path: /dictionaries/profiles
+          key: id
+      cutting:
+        $ref: '#/definitions/BeamCuttings'
+    required:
+      - id
+      - geometry
+      - profile
+    additionalProperties: false
 
   Construction:
     type: object
@@ -808,14 +871,22 @@ definitions:
         description: --- Проем в заказе
         $ref: '#/definitions/Polygon'
       elements:
-        description: --- Список элементов (products, components etc.) в конструкции, ex products
+        description:
+          --- Список элементов (products, components etc.) в конструкции, ex
+          products
         type: array
         items:
           $ref: '#/definitions/Element'
-      connections:
-        description: --- Список соединетелей элементов конструкции
+      couplings:
+        description: --- Список соединителей элементов конструкции
         type: array
         items:
-          $ref: '#/definitions/Connection'
+          $ref: '#/definitions/Coupling'
+      extensions:
+        description: --- Список расширителей рам элементов конструкции
+        type: array
+        items:
+          $ref: '#/definitions/Extension'
     required:
       - id
+    additionalProperties: false

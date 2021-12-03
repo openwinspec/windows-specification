@@ -3,6 +3,10 @@
     {
       "fileMatch": ["/examples/1.0/*.model.json"],
       "url": "/schemas/1.0/schema.json"
+    },
+    {
+      "fileMatch": ["/examples/1.0/*.funnels.json"],
+      "url": "/schemas/1.0/funnels.json"
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -25,5 +29,8 @@
   "markdown.extension.toc.updateOnSave": false,
   "yaml.schemas": {
     "https://json-schema.org/draft-04/schema": ["schemas/1.0/schema.yaml"]
+  },
+  "yaml-plus-json": {
+    "keepOriginalFiles": "always"
   }
 }

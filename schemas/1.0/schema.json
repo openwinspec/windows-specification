@@ -40,7 +40,10 @@
       }
     }
   },
-  "required": ["info", "openwinversion"],
+  "required": [
+    "info",
+    "openwinversion"
+  ],
   "definitions": {
     "ID": {
       "type": "object",
@@ -52,7 +55,10 @@
           "type": "string"
         }
       },
-      "required": ["value"]
+      "additionalProperties": false,
+      "required": [
+        "value"
+      ]
     },
     "Info": {
       "type": "object",
@@ -65,7 +71,10 @@
           "type": "string"
         }
       },
-      "required": ["id"]
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ]
     },
     "Point": {
       "type": "object",
@@ -83,7 +92,8 @@
         "z": {
           "type": "number"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "Segment": {
       "type": "object",
@@ -102,7 +112,11 @@
           "type": "number"
         }
       },
-      "required": ["start", "end"]
+      "additionalProperties": false,
+      "required": [
+        "start",
+        "end"
+      ]
     },
     "Polygon": {
       "type": "object",
@@ -122,12 +136,19 @@
           "type": "boolean"
         }
       },
-      "required": ["sides"]
+      "additionalProperties": false,
+      "required": [
+        "sides"
+      ]
     },
     "Locale": {
       "description": "-- Один из вариантов реализации локализации",
       "type": "string",
-      "enum": ["EN", "RU", "DE"]
+      "enum": [
+        "EN",
+        "RU",
+        "DE"
+      ]
     },
     "LocaleString": {
       "type": "object",
@@ -144,13 +165,19 @@
       },
       "anyOf": [
         {
-          "required": ["en"]
+          "required": [
+            "en"
+          ]
         },
         {
-          "required": ["ru"]
+          "required": [
+            "ru"
+          ]
         },
         {
-          "required": ["de"]
+          "required": [
+            "de"
+          ]
         }
       ]
     },
@@ -163,68 +190,78 @@
         "vendors": {
           "type": "array",
           "description": "-- uniqueItems keyword exist in 2019-09 json schema, instead use unique",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Vendor"
           }
         },
         "profileSystems": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/ProfileSystem"
           }
         },
         "profiles": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Profile"
           }
         },
-        "reinforcement": {
-          "type": "array",
-          "unique": ["id"],
-          "items": {
-            "$ref": "#/definitions/Reinforcement"
-          }
-        },
         "spacer": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Spacer"
           }
         },
         "glasses": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Glass"
           }
         },
         "glazing": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Glazing"
           }
         },
         "panels": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Panel"
           }
         },
         "colors": {
           "type": "array",
-          "unique": ["id"],
+          "unique": [
+            "id"
+          ],
           "items": {
             "$ref": "#/definitions/Color"
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "VendorType": {
       "type": "string",
@@ -254,7 +291,12 @@
           "type": "string"
         }
       },
-      "required": ["id", "vendorType", "name"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorType",
+        "name"
+      ]
     },
     "VendorMaterial": {
       "type": "object",
@@ -262,7 +304,7 @@
         "vendor": {
           "$ref": "#/definitions/ID",
           "dictionary": {
-            "path": "/dictionaries/vendors",
+            "path": "dictionaries/vendors",
             "key": "id"
           }
         },
@@ -275,19 +317,26 @@
           "type": "string"
         }
       },
-      "required": ["vendor", "article", "name"]
+      "additionalProperties": false,
+      "required": [
+        "vendor",
+        "article",
+        "name"
+      ]
     },
     "ProfileType": {
       "type": "string",
       "description": "--- Как описать типы на разных языках ???",
       "enum": [
         "Frame",
+        "Sliding Frame",
         "Sash",
         "Mullion",
         "GlazingBead",
         "Reinforcement",
         "PseudoMullion",
-        "Connector"
+        "Coupling",
+        "Extension"
       ]
     },
     "ProfileSystem": {
@@ -307,7 +356,12 @@
           "type": "string"
         }
       },
-      "required": ["id", "vendor", "name"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendor",
+        "name"
+      ]
     },
     "Profile": {
       "type": "object",
@@ -359,6 +413,10 @@
         "h1": {
           "type": "number"
         },
+        "n": {
+          "description": "Количество направляющих для раздвижных коробок",
+          "type": "number"
+        },
         "baseColor": {
           "$ref": "#/definitions/ID"
         },
@@ -369,40 +427,21 @@
           "$ref": "#/definitions/ID"
         }
       },
-      "required": ["id", "vendorArticle", "profileType"]
-    },
-    "Reinforcement": {
-      "type": "object",
-      "description": "--- Или армирование описываем отдельно ???",
-      "properties": {
-        "id": {
-          "$ref": "#/definitions/ID"
-        },
-        "vendorArticle": {
-          "$ref": "#/definitions/VendorMaterial"
-        },
-        "ix": {
-          "type": "number"
-        },
-        "iy": {
-          "type": "number"
-        },
-        "h": {
-          "type": "number"
-        },
-        "h1": {
-          "type": "number"
-        },
-        "weight": {
-          "type": "number"
-        }
-      },
-      "required": ["id", "vendorArticle"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorArticle",
+        "profileType"
+      ]
     },
     "ColorType": {
       "description": "-- Тип кодирования цвета (классификатор)",
       "type": "string",
-      "enum": ["PVC", "Renolit", "RAL"]
+      "enum": [
+        "PVC",
+        "Renolit",
+        "RAL"
+      ]
     },
     "Color": {
       "type": "object",
@@ -420,7 +459,13 @@
           "$ref": "#/definitions/ColorType"
         }
       },
-      "required": ["id", "colorName", "colorCode", "colorType"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "colorName",
+        "colorCode",
+        "colorType"
+      ]
     },
     "Panel": {
       "type": "object",
@@ -444,7 +489,12 @@
           "type": "number"
         }
       },
-      "required": ["id", "vendorArticle", "thickness"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorArticle",
+        "thickness"
+      ]
     },
     "GlassType": {
       "type": "string",
@@ -494,7 +544,13 @@
           "type": "number"
         }
       },
-      "required": ["id", "vendorArticle", "glassType", "thickness"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorArticle",
+        "glassType",
+        "thickness"
+      ]
     },
     "Glazing": {
       "type": "object",
@@ -521,7 +577,13 @@
           }
         }
       },
-      "required": ["id", "vendorArticle", "thickness", "glasses"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorArticle",
+        "thickness",
+        "glasses"
+      ]
     },
     "SpacerMaterial": {
       "type": "string",
@@ -561,7 +623,12 @@
           "type": "number"
         }
       },
-      "required": ["id", "vendorArticle", "size"]
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "vendorArticle",
+        "size"
+      ]
     },
     "HardwareType": {
       "type": "object",
@@ -590,11 +657,19 @@
     "ProductType": {
       "type": "string",
       "description": "Тип окна, преобразовано в enum. Зачем ?",
-      "enum": ["Window", "Door"]
+      "enum": [
+        "Window",
+        "Door"
+      ]
     },
     "ComponentType": {
       "type": "string",
-      "enum": ["Frame", "Sash", "Mullion", "Filling"]
+      "enum": [
+        "Frame",
+        "Sash",
+        "Mullion",
+        "Filling"
+      ]
     },
     "ComponentFeatures": {
       "type": "object",
@@ -615,18 +690,27 @@
           "$ref": "#/definitions/FillingFeature"
         }
       },
+      "additionalProperties": false,
       "oneOf": [
         {
-          "required": ["frameFeature"]
+          "required": [
+            "frameFeature"
+          ]
         },
         {
-          "required": ["sashFeature"]
+          "required": [
+            "sashFeature"
+          ]
         },
         {
-          "required": ["mullionFeature"]
+          "required": [
+            "mullionFeature"
+          ]
         },
         {
-          "required": ["fillingFeature"]
+          "required": [
+            "fillingFeature"
+          ]
         }
       ]
     },
@@ -645,7 +729,8 @@
           "type": "string",
           "description": "-- цвет ламинации/покраски извне"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "FrameFeature": {
       "type": "object",
@@ -667,7 +752,11 @@
           "description": "Наличие компенсационных отверстий"
         }
       },
-      "required": ["sillStub", "drained"]
+      "additionalProperties": false,
+      "required": [
+        "sillStub",
+        "drained"
+      ]
     },
     "SashOpeningType": {
       "type": "string",
@@ -686,7 +775,10 @@
           "$ref": "#/definitions/SashOpeningType"
         }
       },
-      "required": ["openingType"]
+      "additionalProperties": false,
+      "required": [
+        "openingType"
+      ]
     },
     "MullionFeature": {
       "type": "object",
@@ -695,11 +787,16 @@
           "type": "boolean",
           "description": "-- Расчет ветровой нагрузки"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "FillingType": {
       "type": "string",
-      "enum": ["Glazing", "Panel", "Virtual"]
+      "enum": [
+        "Glazing",
+        "Panel",
+        "Virtual"
+      ]
     },
     "GlazingFeature": {
       "type": "object",
@@ -715,7 +812,8 @@
             "key": "id"
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "PanelFeature": {
       "type": "object",
@@ -731,7 +829,8 @@
             "key": "id"
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "VirtualFeature": {
       "type": "object",
@@ -756,15 +855,22 @@
       },
       "oneOf": [
         {
-          "required": ["glazingFeature"]
+          "required": [
+            "glazingFeature"
+          ]
         },
         {
-          "required": ["panelFeature"]
+          "required": [
+            "panelFeature"
+          ]
         },
         {
-          "required": ["virtualFeature"]
+          "required": [
+            "virtualFeature"
+          ]
         }
-      ]
+      ],
+      "additionalProperties": false
     },
     "FillingFeature": {
       "type": "object",
@@ -784,7 +890,8 @@
             "$ref": "#/definitions/Beam"
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "GlazingBeadFeature": {
       "type": "object",
@@ -799,11 +906,17 @@
             "$ref": "#/definitions/VendorMaterial"
           }
         }
-      }
+      },
+      "additionalProperties": false
     },
     "CuttingType": {
       "type": "string",
-      "enum": ["Angle45", "Vertical", "Horizontal", "Square"]
+      "enum": [
+        "Angle45",
+        "Vertical",
+        "Horizontal",
+        "Square"
+      ]
     },
     "BeamCuttings": {
       "type": "object",
@@ -820,7 +933,8 @@
         "end_int": {
           "$ref": "#/definitions/CuttingType"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "Beam": {
       "type": "object",
@@ -838,7 +952,11 @@
         },
         "drain": {
           "type": "string",
-          "enum": ["NotAvailable", "Available", "Hidden"],
+          "enum": [
+            "NotAvailable",
+            "Available",
+            "Hidden"
+          ],
           "description": "тип дренажирования на балке"
         },
         "compensationHole": {
@@ -857,7 +975,8 @@
           "$ref": "#/definitions/ID",
           "description": "-- цвет ламинации/покраски снаружи"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "Component": {
       "type": "object",
@@ -899,7 +1018,44 @@
             "$ref": "#/definitions/Component"
           }
         }
-      }
+      },
+      "additionalProperties": false
+    },
+    "Splitter": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "virtual"
+          ]
+        },
+        "segment": {
+          "$ref": "#/definitions/Segment"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Wire": {
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "type": "array",
+          "description": "Добавить признак виртуальности",
+          "items": {
+            "$ref": "#/definitions/Polygon"
+          }
+        },
+        "splitters": {
+          "type": "array",
+          "description": "--- ex segments",
+          "items": {
+            "$ref": "#/definitions/Splitter"
+          }
+        }
+      },
+      "additionalProperties": false
     },
     "Element": {
       "type": "object",
@@ -919,17 +1075,10 @@
             "key": "id"
           }
         },
-        "geometry": {
+        "wires": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Polygon"
-          }
-        },
-        "splitters": {
-          "type": "array",
-          "description": "--- ex segments",
-          "items": {
-            "$ref": "#/definitions/Segment"
+            "$ref": "#/definitions/Wire"
           }
         },
         "components": {
@@ -939,9 +1088,14 @@
           }
         }
       },
-      "required": ["id", "geometry"]
+      "required": [
+        "id",
+        "wires",
+        "components"
+      ],
+      "additionalProperties": false
     },
-    "Connection": {
+    "Coupling": {
       "type": "object",
       "description": "--- Описание сединителя элементов конструкции",
       "properties": {
@@ -952,6 +1106,7 @@
           "$ref": "#/definitions/Segment"
         },
         "profile": {
+          "description": "-- профильный узел !?",
           "$ref": "#/definitions/ID",
           "dictionary": {
             "path": "/dictionaries/profiles",
@@ -962,7 +1117,41 @@
           "$ref": "#/definitions/BeamCuttings"
         }
       },
-      "required": ["id", "profile"]
+      "required": [
+        "id",
+        "geometry",
+        "profile"
+      ],
+      "additionalProperties": false
+    },
+    "Extension": {
+      "type": "object",
+      "description": "---- Описание расширителей",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/ID"
+        },
+        "geometry": {
+          "$ref": "#/definitions/Polygon"
+        },
+        "profile": {
+          "description": "-- профильный узел !?",
+          "$ref": "#/definitions/ID",
+          "dictionary": {
+            "path": "/dictionaries/profiles",
+            "key": "id"
+          }
+        },
+        "cutting": {
+          "$ref": "#/definitions/BeamCuttings"
+        }
+      },
+      "required": [
+        "id",
+        "geometry",
+        "profile"
+      ],
+      "additionalProperties": false
     },
     "Construction": {
       "type": "object",
@@ -982,15 +1171,25 @@
             "$ref": "#/definitions/Element"
           }
         },
-        "connections": {
-          "description": "--- Список соединетелей элементов конструкции",
+        "couplings": {
+          "description": "--- Список соединителей элементов конструкции",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/Connection"
+            "$ref": "#/definitions/Coupling"
+          }
+        },
+        "extensions": {
+          "description": "--- Список расширителей рам элементов конструкции",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Extension"
           }
         }
       },
-      "required": ["id"]
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false
     }
   }
 }
