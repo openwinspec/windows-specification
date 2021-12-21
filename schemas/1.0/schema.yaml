@@ -482,7 +482,7 @@ definitions:
       id:
         $ref: '#/definitions/ID'
       name:
-        typw: string
+        type: string
 
   HardwareSystem:
     type: object
