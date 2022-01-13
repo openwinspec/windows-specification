@@ -395,6 +395,56 @@
           }
         ]
       },
+      "geometry2D": {
+        "couplings": [
+          {
+            "firstSide": { "value": "3000" },
+            "secondSide": { "value": "3001" },
+            "angleXY": 180,
+            "couplingBySecondSide": false,
+            "offset": 100
+          }
+        ]
+      },
+      "geometry3D": {
+        "elements": [
+          {
+            "id": { "value": "10000" },
+            "sides": [
+              { "start": {}, "end": { "z": 1500 } },
+              { "start": { "z": 1500 }, "end": { "x": 1500, "z": 1500 } },
+              { "start": { "x": 1500, "z": 1500 }, "end": { "x": 1500 } },
+              { "start": { "x": 1500 }, "end": {} }
+            ]
+          },
+          {
+            "id": { "value": "10001" },
+            "sides": [
+              {
+                "start": { "x": 1500, "z": -900 },
+                "end": { "x": 1500, "z": 1500 }
+              },
+              {
+                "start": { "x": 1500, "z": 1500 },
+                "end": { "x": 2300, "z": 1500 }
+              },
+              {
+                "start": { "x": 2300, "z": 1500 },
+                "end": { "x": 2300, "z": -900 }
+              },
+              {
+                "start": { "x": 2300, "z": -900 },
+                "end": { "x": 1500, "z": -900 }
+              }
+            ]
+          }
+        ],
+        "couplings": {
+          "segment": [
+            { "start": { "x": 1500 }, "end": { "x": 1500, "z": 1500 } }
+          ]
+        }
+      },
       "elements": [
         {
           "id": { "value": "6001" },

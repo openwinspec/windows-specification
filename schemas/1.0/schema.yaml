@@ -870,6 +870,12 @@ definitions:
       roughOpening:
         description: --- Проем в заказе
         $ref: '#/definitions/Polygon'
+      geometry3D:
+        description: Геометрия конструкции в проволоке и 3D
+        $ref: '#/definitions/ConstructionGeometry3D'
+      geometry2D:
+        description: Геометрия конструкции в 2D
+        $ref: '#/definitions/ConstructionGeometry2D'
       elements:
         description:
           --- Список элементов (products, components etc.) в конструкции, ex
@@ -890,3 +896,54 @@ definitions:
     required:
       - id
     additionalProperties: false
+
+  ConstructionGeometry3D:
+    type: object
+    description: Система координата определеяется стартовой координатой первого сегмента в первом полигоне, отрицательные значения вершин допускаются.
+    properties:
+      elements:
+        type: array
+        items:
+          $ref: '#/definitions/Polygon'
+      couplings:
+        $ref: '#/definitions/Coupling3D'
+
+  Coupling3D:
+    type: object
+    description: Нужно ли описывать элементы которые остаются неизменными по размеру?
+    properties:
+      segments:
+        type: array
+        items:
+          $ref: '#/definitions/Segment'
+
+  ConstructionGeometry2D:
+    type: object
+    properties:
+      couplings:
+        type: array
+        items:
+          $ref: '#/definitions/Coupling2D'
+
+  Coupling2D:
+    type: object
+    description: Предполагаем что длина соединителя равна длине стороны по которой происходит соединение
+    properties:
+      firstSide:
+        $ref: '#/definitions/ID'
+      secondSide:
+        $ref: '#/definitions/ID'
+      couplingBySecondSide:
+        description: Если соединение по второй стороне
+        type: boolean
+      angleXY:
+        descripton: Угол поворота оси X в плоскости XY, положительный - по часовой стрелке сверху
+        type: number
+      offset:
+        description: смещение второй элемента относительно первого по стороне соединения
+        type: number
+
+    required:
+      - firstSide
+      - secondSide
+      - angleXY
