@@ -1,0 +1,424 @@
+{
+  "openwinversion": "2.0.0",
+  "info": { "id": "3dfc8657-c2dc-450f-8d4c-017b85d25af7", "locale": "RU" },
+  "dictionaries": {
+    "sync": true,
+    "vendors": [
+      {
+        "id": 0,
+        "name": "REHAU",
+        "web": "www.rehau.com",
+        "type": "Profile"
+      },
+      {
+        "id": 1,
+        "name": "Северсталь",
+        "web": "www.severstal.com",
+        "type": "Metall"
+      },
+      {
+        "id": 2,
+        "name": "ROTO",
+        "web": "www.roto.com",
+        "type": "Hardware"
+      },
+      {
+        "id": 3,
+        "name": "Warmex",
+        "web": "warmex.ru.com",
+        "type": "Spacer"
+      },
+      {
+        "id": 4,
+        "name": "СТиС",
+        "web": "stis.ru",
+        "type": "Glazing"
+      },
+      {
+        "id": 5,
+        "name": "AGC",
+        "type": "Glass",
+        "web": "www.agc.com"
+      },
+      {
+        "id": 6,
+        "type": "Panel",
+        "name": "Sorton",
+        "web": "www.sorton.ru"
+      }
+    ],
+    "spacer": [
+      {
+        "id": 0,
+        "type": "Aluminum",
+        "thickness": 0.35,
+        "weight": 0.3,
+        "size": 15.5,
+        "material": {
+          "vendor": 3,
+          "article": "100002",
+          "name": "Рамка дистанционная алюминиевая 15.5"
+        }
+      },
+      {
+        "id": 1,
+        "type": "Plastic-metal hybrid warm edge",
+        "size": 16.5,
+        "thickness": 0.35,
+        "material": {
+          "vendor": 3,
+          "article": "100001",
+          "name": "Рамкас дистанционная теплая 16.5"
+        },
+        "weight": 0.25
+      }
+    ],
+    "profileSystems": [
+      {
+        "id": 0,
+        "vendor": 0,
+        "name": "REHAU BLITZ 60"
+      },
+      {
+        "id": 1,
+        "vendor": 0,
+        "name": "REHAU DELIGHT-DESIGN 70"
+      },
+      {
+        "id": 2,
+        "vendor": 0,
+        "name": "REHAU Дполнительные профили"
+      }
+    ],
+    "profiles": [
+      {
+        "id": 0,
+        "type": "Frame",
+        "profileSystem": 1,
+        "material": {
+          "vendor": 0,
+          "article": "554008",
+          "name": "Рама 60 Delight Design"
+        },
+        "a": 60,
+        "b": 32,
+        "c": 40,
+        "d": 45,
+        "w": 70,
+        "w1": 56,
+        "w2": 56,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 1,
+        "type": "Sash",
+        "profileSystem": 1,
+        "material": {
+          "vendor": 0,
+          "article": "554018",
+          "name": "Створка 58 Delight Design"
+        },
+        "a": 78,
+        "b": 50,
+        "c": 58,
+        "d": 63,
+        "e": 20,
+        "w": 70,
+        "w1": 56,
+        "w2": 56,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 2,
+        "type": "Sash",
+        "profileSystem": 1,
+        "material": {
+          "vendor": 0,
+          "article": "554018",
+          "name": "Створка 58 Delight Design в качестве рамы"
+        },
+        "a": 78,
+        "b": 50,
+        "c": 58,
+        "d": 63,
+        "w": 70,
+        "w1": 56,
+        "w2": 56,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 3,
+        "type": "Frame",
+        "profileSystem": 1,
+        "material": {
+          "vendor": 0,
+          "article": "554018",
+          "name": "Створка 58 Delight Design с отрезанным наплавом со стороны фурнитуры паза в качестве рамы"
+        },
+        "a": 58,
+        "b": 30,
+        "c": 38,
+        "d": 43,
+        "w": 70,
+        "w1": 56,
+        "w2": 56,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 4,
+        "type": "Mullion",
+        "profileSystem": 1,
+        "material": {
+          "vendor": 0,
+          "article": "554028",
+          "name": "Импост 78 Delight Design"
+        },
+        "a": 39,
+        "b": 11,
+        "c": 19,
+        "d": 24,
+        "w": 70,
+        "w1": 56,
+        "w2": 56,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 5,
+        "type": "Coupling",
+        "profileSystem": 2,
+        "material": {
+          "vendor": 0,
+          "article": "546301",
+          "name": "Профиль соединительный 3/70"
+        },
+        "w": 69,
+        "h": 1.5,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 6,
+        "type": "GlazingBead",
+        "profileSystem": 2,
+        "material": {
+          "vendor": 0,
+          "article": "560600",
+          "name": "Штапик 14,5"
+        },
+        "w": 14.5,
+        "h": 18,
+        "h1": 22,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 7,
+        "type": "Coupling",
+        "profileSystem": 2,
+        "material": {
+          "vendor": 0,
+          "article": "546290",
+          "name": "Профиль соединительный 65/70"
+        },
+        "w": 70,
+        "h": 32.5,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      },
+      {
+        "id": 8,
+        "type": "Extension",
+        "profileSystem": 2,
+        "material": {
+          "vendor": 0,
+          "article": "560303",
+          "name": "Профиль доборный 40/70"
+        },
+        "w": 70,
+        "h": 40,
+        "baseColor": 0,
+        "internalColor": 0,
+        "externalColor": 0
+      }
+    ],
+    "glasses": [
+      {
+        "id": 0,
+        "type": "Float Glass",
+        "thickness": 4,
+        "material": {
+          "vendor": 5,
+          "article": "2000",
+          "name": "Стекло 4 мм"
+        }
+      },
+      {
+        "id": 1,
+        "thickness": 6,
+        "type": "Float Glass",
+        "material": {
+          "vendor": 5,
+          "article": "2001",
+          "name": "Стекло 6 мм"
+        }
+      },
+      {
+        "id": 2,
+        "thickness": 4,
+        "type": "Float Glass",
+        "weight": 10,
+        "material": {
+          "article": "2002",
+          "name": "4 mm Planibel Clear",
+          "vendor": 5
+        },
+        "Lr": 8,
+        "Lt": 90,
+        "Sf": 86,
+        "Ug": 5.8
+      }
+    ],
+    "panels": [
+      {
+        "id": 0,
+        "thickness": 24,
+        "type": "",
+        "material": {
+          "article": "1593",
+          "vendor": 6,
+          "name": "Сэндвич панель белая 24 мм односторонняя"
+        },
+        "weight": 5
+      }
+    ],
+    "glazing": [
+      {
+        "id": 0,
+        "material": {
+          "vendor": 4,
+          "article": "01",
+          "name": "Стеклопакет 4-16-4"
+        },
+        "thickness": 24,
+        "glasses": [0, 0],
+        "spacer": [0]
+      }
+    ]
+  },
+  "constructions": [
+    {
+      "elements": [
+        {
+          "components": {
+            "type": "Frame",
+            "geometry": {
+              "sides": [
+                { "start": {}, "end": { "z": 1500 } },
+                { "start": { "z": 1500 }, "end": { "x": 1500, "z": 1500 } },
+                { "start": { "x": 1500, "z": 1500 }, "end": { "x": 1500 } },
+                { "start": { "x": 1500 }, "end": {} }
+              ],
+              "closed": true
+            },
+            "beams": [
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              { "profile": 0, "cuttings": { "start": "Angle", "end": "Angle" } }
+            ],
+            "drained": true,
+            "sillStub": false,
+            "components": [
+              {
+                "type": "Mullion",
+                "geometry": {
+                  "start": { "x": 750 },
+                  "end": { "x": 750, "z": 1500 }
+                },
+                "beam": {
+                  "profile": 4,
+                  "cuttings": { "start": "Inner", "end": "Inner" }
+                },
+                "components": [
+                  {
+                    "type": "Sash",
+                    "beams": [
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      }
+                    ],
+                    "components": [
+                      {
+                        "type": "Mullion",
+                        "geometry": {
+                          "start": { "z": 500 },
+                          "end": { "x": 750, "z": 500 }
+                        },
+                        "beam": {
+                          "profile": 4,
+                          "cuttings": { "start": "Inner", "end": "Inner" }
+                        },
+                        "components": [
+                          {
+                            "type": "Filling",
+                            "fillingType": "Glazing",
+                            "thickness": 24,
+                            "glazing": 0,
+                            "glazingBeads": 6
+                          },
+                          {
+                            "type": "Filling",
+                            "fillingType": "Panel",
+                            "thickness": 24,
+                            "panel": 0,
+                            "glazingBeads": [6, 6, 6, 6]
+                          }
+                        ]
+                      }
+                    ],
+                    "openingType": "TiltAndTurn"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

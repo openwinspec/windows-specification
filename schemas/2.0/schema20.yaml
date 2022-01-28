@@ -1,0 +1,629 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: openwinspec.schema.json
+title: openwinspec root object
+description: Order in Windows Branch
+type: object
+properties:
+  openwinversion:
+    type: string
+  info:
+    $ref: '#/definitions/Info'
+  dictionaries:
+    $ref: '#/definitions/Dictionaries'
+  constructions:
+    type: array
+    description: --- Альтернативно items, apertures, component, RoughOpening,
+      определить что первично, конструкция или проем
+    items:
+      $ref: '#/definitions/Construction'
+required:
+  - info
+  - openwinversion
+  #   определить необходимость!
+  # - dictionaries
+  # - constructions
+
+definitions:
+  Info:
+    type: object
+    properties:
+      id:
+        description: Ункальный ID заказа
+        type: string
+      locale:
+        type: string
+    additionalProperties: false
+    required:
+      - id
+
+  Point:
+    type: object
+    properties:
+      x:
+        type: number
+      y:
+        type: number
+      z:
+        type: number
+    additionalProperties: false
+
+  Segment:
+    type: object
+    description: Описание геометрического отрезка 3D для проволочной модели
+    properties:
+      start:
+        $ref: '#/definitions/Point'
+      end:
+        $ref: '#/definitions/Point'
+      arcHeight:
+        type: number
+    additionalProperties: false
+    required:
+      - start
+      - end
+
+  Polygon:
+    type: array
+    description: Полигон в 3D
+    items:
+      $ref: '#/definitions/Segment'
+
+  Dictionaries:
+    type: object
+    properties:
+      sync:
+        type: boolean
+      vendors:
+        type: array
+        description: -- uniqueItems keyword exist in 2019-09 json schema, instead use unique
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Vendor'
+      profileSystems:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/ProfileSystem'
+      profiles:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Profile'
+      spacer:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Spacer'
+      glasses:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Glass'
+      glazing:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Glazing'
+      panels:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Panel'
+      colors:
+        type: array
+        unique:
+          - id
+        items:
+          $ref: '#/definitions/Color'
+    additionalProperties: false
+
+  Vendor:
+    type: object
+    properties:
+      id:
+        type: number
+      type:
+        anyOf:
+          - const: 'Profile'
+          - const: 'Hardware'
+          - const: 'Metall'
+          - const: 'Glass'
+          - const: 'Spacer'
+          - const: 'Glazing'
+          - const: 'Panel'
+      name:
+        type: string
+      web:
+        type: string
+    additionalProperties: false
+    required:
+      - type
+      - name
+
+  VendorMaterial:
+    type: object
+    properties:
+      vendor:
+        type: number
+      article:
+        description: Артикул в учетных системах поставщика
+        type: string
+      name:
+        description: Название в учетных системах поставщика
+        type: string
+    additionalProperties: false
+    required:
+      - vendor
+      - article
+      - name
+
+  ProfileSystem:
+    type: object
+    properties:
+      id:
+        type: number
+      vendor:
+        type: number
+      name:
+        type: string
+    additionalProperties: false
+    required:
+      - vendor
+      - name
+
+  Profile:
+    type: object
+    description: --- Описываем армирование здесь!
+    properties:
+      id:
+        type: number
+      material:
+        $ref: '#/definitions/VendorMaterial'
+      type:
+        anyOf:
+          - const: 'Frame'
+          - const: 'Sliding Frame'
+          - const: 'Sash'
+          - const: 'Mullion'
+          - const: 'GlazingBead'
+          - const: 'Reinforcement'
+          - const: 'PseudoMullion'
+          - const: 'Coupling'
+          - const: 'Extension'
+      profileSystems:
+        type: array
+        items:
+          type: number
+      a:
+        type: number
+      b:
+        type: number
+      c:
+        type: number
+      d:
+        type: number
+      e:
+        type: number
+      w:
+        type: number
+      w1:
+        type: number
+      w2:
+        type: number
+      h:
+        type: number
+      h1:
+        type: number
+      n:
+        description: Количество направляющих для раздвижных коробок
+        type: number
+      baseColor:
+        type: number
+      internalColor:
+        type: number
+      externalColor:
+        type: number
+    additionalProperties: false
+    required:
+      - material
+      - type
+
+  Panel:
+    type: object
+    description: -- Заполнения
+    properties:
+      id:
+        type: number
+      material:
+        $ref: '#/definitions/VendorMaterial'
+      type:
+        description: -- Вводим тип панели?
+        type: string
+      thickness:
+        type: number
+      weight:
+        description: -- Вес 1 м2
+        type: number
+    additionalProperties: false
+    required:
+      - material
+      - type
+      - thickness
+
+  Glass:
+    type: object
+    description: -- Стекло, характеристики Lt-Ug см. например
+      https://www.agc-yourglass.com/en-UK/brands/energy
+    properties:
+      id:
+        type: number
+      material:
+        $ref: '#/definitions/VendorMaterial'
+      type:
+        description: -- Тип стекла, ниже из классификации по https://www.doubleglazingnetwork.com/blog/window-glass-types/
+        anyOf:
+          - const: 'Float Glass'
+          - const: 'Laminated Safety Glass'
+          - const: 'Obscured Glass'
+          - const: 'Tinted Glass'
+          - const: 'Tempered Glass'
+          - const: 'Insulated Glass'
+          - const: 'Mirrored Glass'
+          - const: 'Low-E Glass'
+          - const: 'Wired Glass'
+      thickness:
+        type: number
+      weight:
+        description: -- Вес 1 м2
+        type: number
+      Lt:
+        type: number
+      Sf:
+        type: number
+      Lr:
+        type: number
+      Ug:
+        type: number
+    additionalProperties: false
+    required:
+      - material
+      - type
+      - thickness
+
+  Glazing:
+    type: object
+    properties:
+      id:
+        type: number
+      material:
+        $ref: '#/definitions/VendorMaterial'
+      thickness:
+        type: number
+      glasses:
+        type: array
+        items:
+          type: number
+      spacer:
+        type: array
+        items:
+          type: number
+    additionalProperties: false
+    required:
+      - id
+      - material
+      - thickness
+      - glasses
+
+  Spacer:
+    type: object
+    description: -- Дистанционная рамка
+    properties:
+      id:
+        type: number
+      material:
+        $ref: '#/definitions/VendorMaterial'
+      type:
+        description: -- Материал дистанционной рамки, см. например
+          https://www.glastory.net/insulating-glass-spacers-all-you-wanted-to-know/
+          и
+          https://glazingmag.ru/distantsionnaya-ramka-dlya-steklopaketa-vidy-i-naznachenie/
+          и
+          https://okna-blitz.ru/drugoe/distantsionnye-ramki-dlya-steklopaketov-razmery-i-vidy.html
+        anyOf:
+          - const: 'Aluminum'
+          - const: 'Warm edge'
+          - const: 'Stainless steel warm edge'
+          - const: 'Plastic-metal hybrid warm edge'
+          - const: 'Flexible warm edge'
+          - const: 'TPS'
+      size:
+        description: -- Ширина рамки
+        type: number
+      thickness:
+        description: -- Толщина стенки
+        type: number
+      weight:
+        description: Вес 1 п.м.
+        type: number
+    additionalProperties: false
+    required:
+      - material
+      - type
+      - size
+
+  Color:
+    type: object
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      code:
+        type: string
+      type:
+        anyOf:
+          - const: 'PVC'
+          - const: 'Renolit'
+          - const: 'RAL'
+    additionalProperties: false
+    required:
+      - name
+      - code
+      - type
+
+  CuttingType:
+    oneOf:
+      - const: 'Angle'
+      - const: 'Inner'
+      - const: 'Outer'
+      - const: 'Sheep'
+
+  Beam:
+    type: object
+    properties:
+      profile:
+        type: number
+      cuttings:
+        type: object
+        properties:
+          start:
+            $ref: '#/definitions/CuttingType'
+          end:
+            $ref: '#/definitions/CuttingType'
+
+  FrameComponent:
+    type: object
+    properties:
+      type:
+        const: 'Frame'
+      geometry:
+        type: object
+        properties:
+          sides:
+            $ref: '#/definitions/Polygon'
+          closed:
+            type: boolean
+      beams:
+        type: array
+        items:
+          $ref: '#/definitions/Beam'
+      components:
+        type: array
+        items:
+          $ref: '#/definitions/Component'
+      sillStub:
+        type: boolean
+        description: Наличие подставочного профиля
+      rabbetStub:
+        type: boolean
+        description: Наличие заглушки паза под штапик (для ПВХ)
+      drained:
+        type: boolean
+        description: Наличие дренажа
+      compensationHole:
+        type: boolean
+        description: Наличие компенсационных отверстий
+      profiles:
+        $ref: '#/definitions/BeamsProfiles'
+    additionalProperties: false
+    required:
+      - type
+      - geometry
+      - sillStub
+      - drained
+
+  SashComponent:
+    type: object
+    properties:
+      type:
+        const: 'Sash'
+      openingType:
+        anyOf:
+          - const: 'Casement'
+          - const: 'TiltBottom'
+          - const: 'TiltTop'
+          - const: 'TiltAndTurn'
+          - const: 'FixedCasement'
+      beams:
+        type: array
+        items:
+          $ref: '#/definitions/Beam'
+      components:
+        type: array
+        items:
+          $ref: '#/definitions/Component'
+    additionalProperties: false
+    required:
+      - type
+      - openingType
+
+  MullionComponent:
+    type: object
+    properties:
+      type:
+        const: 'Mullion'
+      geometry:
+        $ref: '#/definitions/Segment'
+      beam:
+        $ref: '#/definitions/Beam'
+      components:
+        type: array
+        items:
+          $ref: '#/definitions/Component'
+      calcWind:
+        type: boolean
+        description: -- Расчет ветровой нагрузки
+      profiles:
+        $ref: '#/definitions/BeamsProfiles'
+    additionalProperties: false
+    required:
+      - type
+      - geometry
+
+  GlazingFillingComponent:
+    type: object
+    properties:
+      type:
+        const: 'Filling'
+      fillingType:
+        const: 'Glazing'
+      thickness:
+        type: number
+      glazing:
+        type: number
+      glazingBeads:
+        $ref: '#/definitions/BeamsProfiles'
+    additionalProperties: false
+    required:
+      - type
+      - fillingType
+      - thickness
+      - glazing
+      - glazingBeads
+
+  PanelFillingComponent:
+    type: object
+    properties:
+      type:
+        const: 'Filling'
+      fillingType:
+        const: 'Panel'
+      thickness:
+        type: number
+      panel:
+        type: number
+      glazingBeads:
+        $ref: '#/definitions/BeamsProfiles'
+    additionalProperties: false
+    required:
+      - type
+      - fillingType
+      - thickness
+      - panel
+
+  VirtualFillingComponent:
+    type: object
+    properties:
+      type:
+        const: 'Filling'
+      fillingType:
+        const: 'Virtual'
+    additionalProperties: false
+    required:
+      - type
+      - fillingType
+
+  FillingComponent:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/GlazingFillingComponent'
+      - $ref: '#/definitions/PanelFillingComponent'
+      - $ref: '#/definitions/VirtualFillingComponent'
+
+  Component:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/FrameComponent'
+      - $ref: '#/definitions/SashComponent'
+      - $ref: '#/definitions/MullionComponent'
+      - $ref: '#/definitions/FillingComponent'
+
+  Element:
+    type: object
+    properties:
+      components:
+        description: Первый элемент обязательно типа frame
+        $ref: '#/definitions/Component'
+      baseColor:
+        type: string
+        description: -- цвет основы (для ПВХ)
+      internalColor:
+        type: string
+        description: -- цвет ламинации/покраски изнутри/сверху
+      externalColor:
+        type: string
+        description: -- цвет ламинации/покраски извне
+    additionalProperties: false
+    required:
+      - components
+
+  # ElementSide:
+  #   type: object
+  #   properties:
+  #     element:
+  #       type: number
+  #     side:
+  #       type: number
+  #   additionalProperties: false
+  #   required:
+  #     - element
+  #     - side
+
+  Coupling:
+    type: object
+    properties:
+      geometry:
+        $ref: '#/definitions/Segment'
+      beam:
+        $ref: '#/definitions/Beam'
+    additionalProperties: false
+    required:
+      - geometry
+
+  Extension:
+    type: object
+    properties:
+      geometry:
+        $ref: '#/definitions/Polygon'
+      beam:
+        $ref: '#/definitions/Beam'
+    additionalProperties: false
+    required:
+      - geometry
+
+  Construction:
+    type: object
+    properties:
+      roughOpening:
+        description: --- Проем в заказе
+        $ref: '#/definitions/Polygon'
+      elements:
+        type: array
+        items:
+          $ref: '#/definitions/Element'
+      couplings:
+        type: array
+        items:
+          $ref: '#/definitions/Coupling'
+      extensions:
+        type: array
+        items:
+          $ref: '#/definitions/Extension'
+    additionalProperties: false
