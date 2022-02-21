@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "openwinspec.schema.json",
+  "$id": "owsp.schema.json",
   "title": "openwinspec root object",
-  "description": "Order in Windows Branch",
+  "description": "Order in Windows Branche",
   "type": "object",
   "properties": {
     "openwinversion": {
@@ -11,8 +11,17 @@
     "info": {
       "$ref": "#/definitions/Info"
     },
-    "dictionaries": {
-      "$ref": "#/definitions/Dictionaries"
+    "vendors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Vendor"
+      }
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Material"
+      }
     },
     "constructions": {
       "type": "array",
@@ -85,452 +94,403 @@
         "$ref": "#/definitions/Segment"
       }
     },
-    "Dictionaries": {
-      "type": "object",
-      "properties": {
-        "sync": {
-          "type": "boolean"
-        },
-        "vendors": {
-          "type": "array",
-          "description": "-- uniqueItems keyword exist in 2019-09 json schema, instead use unique",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Vendor"
-          }
-        },
-        "profileSystems": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/ProfileSystem"
-          }
-        },
-        "profiles": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Profile"
-          }
-        },
-        "spacer": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Spacer"
-          }
-        },
-        "glasses": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Glass"
-          }
-        },
-        "glazing": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Glazing"
-          }
-        },
-        "panels": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Panel"
-          }
-        },
-        "colors": {
-          "type": "array",
-          "unique": [
-            "id"
-          ],
-          "items": {
-            "$ref": "#/definitions/Color"
-          }
-        }
-      },
-      "additionalProperties": false
-    },
     "Vendor": {
       "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/ProfileVendor"
+        },
+        {
+          "$ref": "#/definitions/ReinforcementVendor"
+        },
+        {
+          "$ref": "#/definitions/GlassVendor"
+        },
+        {
+          "$ref": "#/definitions/GlazingVendor"
+        },
+        {
+          "$ref": "#/definitions/PanelVendor"
+        },
+        {
+          "$ref": "#/definitions/SpacerVendor"
+        },
+        {
+          "$ref": "#/definitions/HardwareVendor"
+        }
+      ]
+    },
+    "ServerUri": {
+      "type": "object",
       "properties": {
-        "id": {
-          "type": "number"
+        "uri": {
+          "type": "string"
+        }
+      }
+    },
+    "ProfileVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
         },
         "type": {
-          "anyOf": [
-            {
-              "const": "Profile"
-            },
-            {
-              "const": "Hardware"
-            },
-            {
-              "const": "Metall"
-            },
-            {
-              "const": "Glass"
-            },
-            {
-              "const": "Spacer"
-            },
-            {
-              "const": "Glazing"
-            },
-            {
-              "const": "Panel"
-            }
-          ]
+          "const": "Profile"
         },
-        "name": {
+        "version": {
           "type": "string"
         },
-        "web": {
-          "type": "string"
+        "uri": {
+          "$ref": "#/definitions/ProfileUri"
         }
-      },
-      "additionalProperties": false,
-      "required": [
-        "type",
-        "name"
+      }
+    },
+    "ProfileUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "profile.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
       ]
     },
-    "VendorMaterial": {
+    "ReinforcementVendor": {
       "type": "object",
       "properties": {
-        "vendor": {
-          "type": "number"
-        },
-        "article": {
-          "description": "Артикул в учетных системах поставщика",
-          "type": "string"
-        },
         "name": {
-          "description": "Название в учетных системах поставщика",
           "type": "string"
+        },
+        "type": {
+          "const": "Reinforcement"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/ReinforcementUri"
         }
-      },
-      "additionalProperties": false,
-      "required": [
-        "vendor",
-        "article",
-        "name"
+      }
+    },
+    "ReinforcementUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "reinforcement.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
       ]
     },
-    "ProfileSystem": {
+    "GlassVendor": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number"
-        },
-        "vendor": {
-          "type": "number"
-        },
         "name": {
           "type": "string"
+        },
+        "type": {
+          "const": "Glass"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/GlassUri"
         }
-      },
-      "additionalProperties": false,
+      }
+    },
+    "GlassUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "glass.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
+      ]
+    },
+    "GlazingVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Glazing"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/GlazingUri"
+        }
+      }
+    },
+    "GlazingUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "glazing.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
+      ]
+    },
+    "PanelVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Panel"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/PanelUri"
+        }
+      }
+    },
+    "PanelUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "panel.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
+      ]
+    },
+    "SpacerVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Spacer"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/SpacerUri"
+        }
+      }
+    },
+    "SpacerUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "spacer.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
+      ]
+    },
+    "HardwareVendor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "const": "Hardware"
+        },
+        "version": {
+          "type": "string"
+        },
+        "uri": {
+          "$ref": "#/definitions/HardwareUri"
+        }
+      }
+    },
+    "HardwareUri": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "hardware.owsp.schema.json"
+        },
+        {
+          "$ref": "#/definitions/ServerUri"
+        }
+      ]
+    },
+    "Material": {
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/Profile"
+        },
+        {
+          "$ref": "#/definitions/Reinforcement"
+        },
+        {
+          "$ref": "#/definitions/Glass"
+        },
+        {
+          "$ref": "#/definitions/Glazing"
+        },
+        {
+          "$ref": "#/definitions/Panel"
+        },
+        {
+          "$ref": "#/definitions/Spacer"
+        },
+        {
+          "$ref": "#/definitions/Hardware"
+        }
+      ],
       "required": [
-        "vendor",
-        "name"
+        "type"
       ]
     },
     "Profile": {
       "type": "object",
-      "description": "--- Описываем армирование здесь!",
       "properties": {
-        "id": {
-          "type": "number"
-        },
-        "material": {
-          "$ref": "#/definitions/VendorMaterial"
-        },
         "type": {
-          "anyOf": [
-            {
-              "const": "Frame"
-            },
-            {
-              "const": "Sliding Frame"
-            },
-            {
-              "const": "Sash"
-            },
-            {
-              "const": "Mullion"
-            },
-            {
-              "const": "GlazingBead"
-            },
-            {
-              "const": "Reinforcement"
-            },
-            {
-              "const": "PseudoMullion"
-            },
-            {
-              "const": "Coupling"
-            },
-            {
-              "const": "Extension"
-            }
-          ]
+          "const": "Profile"
         },
-        "profileSystems": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          }
+        "vendorName": {
+          "type": "string"
         },
-        "a": {
-          "type": "number"
+        "article": {
+          "type": "string"
         },
-        "b": {
-          "type": "number"
-        },
-        "c": {
-          "type": "number"
-        },
-        "d": {
-          "type": "number"
-        },
-        "e": {
-          "type": "number"
-        },
-        "w": {
-          "type": "number"
-        },
-        "w1": {
-          "type": "number"
-        },
-        "w2": {
-          "type": "number"
-        },
-        "h": {
-          "type": "number"
-        },
-        "h1": {
-          "type": "number"
-        },
-        "n": {
-          "description": "Количество направляющих для раздвижных коробок",
-          "type": "number"
-        },
-        "baseColor": {
-          "type": "number"
-        },
-        "internalColor": {
-          "type": "number"
-        },
-        "externalColor": {
-          "type": "number"
+        "features": {
+          "$ref": "features.profile.owsp.schema.json"
         }
       },
-      "additionalProperties": false,
       "required": [
-        "material",
         "type"
       ]
     },
-    "Panel": {
+    "Reinforcement": {
       "type": "object",
-      "description": "-- Заполнения",
       "properties": {
-        "id": {
-          "type": "number"
-        },
-        "material": {
-          "$ref": "#/definitions/VendorMaterial"
-        },
         "type": {
-          "description": "-- Вводим тип панели?",
+          "const": "Reinforcement"
+        },
+        "vendorName": {
           "type": "string"
         },
-        "thickness": {
-          "type": "number"
+        "article": {
+          "type": "string"
         },
-        "weight": {
-          "description": "-- Вес 1 м2",
-          "type": "number"
+        "features": {
+          "$ref": "features.reinforcement.owsp.schema.json"
         }
       },
-      "additionalProperties": false,
       "required": [
-        "material",
-        "type",
-        "thickness"
+        "type"
       ]
     },
     "Glass": {
       "type": "object",
-      "description": "-- Стекло, характеристики Lt-Ug см. например https://www.agc-yourglass.com/en-UK/brands/energy",
       "properties": {
-        "id": {
-          "type": "number"
-        },
-        "material": {
-          "$ref": "#/definitions/VendorMaterial"
-        },
         "type": {
-          "description": "-- Тип стекла, ниже из классификации по https://www.doubleglazingnetwork.com/blog/window-glass-types/",
-          "anyOf": [
-            {
-              "const": "Float Glass"
-            },
-            {
-              "const": "Laminated Safety Glass"
-            },
-            {
-              "const": "Obscured Glass"
-            },
-            {
-              "const": "Tinted Glass"
-            },
-            {
-              "const": "Tempered Glass"
-            },
-            {
-              "const": "Insulated Glass"
-            },
-            {
-              "const": "Mirrored Glass"
-            },
-            {
-              "const": "Low-E Glass"
-            },
-            {
-              "const": "Wired Glass"
-            }
-          ]
+          "const": "Glass"
         },
-        "thickness": {
-          "type": "number"
+        "vendorName": {
+          "type": "string"
         },
-        "weight": {
-          "description": "-- Вес 1 м2",
-          "type": "number"
+        "article": {
+          "type": "string"
         },
-        "Lt": {
-          "type": "number"
-        },
-        "Sf": {
-          "type": "number"
-        },
-        "Lr": {
-          "type": "number"
-        },
-        "Ug": {
-          "type": "number"
+        "features": {
+          "$ref": "features.glass.owsp.schema.json"
         }
       },
-      "additionalProperties": false,
       "required": [
-        "material",
-        "type",
-        "thickness"
+        "type"
       ]
     },
     "Glazing": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "number"
+        "type": {
+          "const": "Glazing"
         },
-        "material": {
-          "$ref": "#/definitions/VendorMaterial"
+        "vendorName": {
+          "type": "string"
         },
-        "thickness": {
-          "type": "number"
+        "article": {
+          "type": "string"
         },
-        "glasses": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          }
-        },
-        "spacer": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          }
+        "features": {
+          "$ref": "features.glazing.owsp.schema.json"
         }
       },
-      "additionalProperties": false,
       "required": [
-        "id",
-        "material",
-        "thickness",
-        "glasses"
+        "type"
+      ]
+    },
+    "Panel": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Panel"
+        },
+        "vendorName": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        },
+        "features": {
+          "$ref": "features.panel.owsp.schema.json"
+        }
+      },
+      "required": [
+        "type"
       ]
     },
     "Spacer": {
       "type": "object",
-      "description": "-- Дистанционная рамка",
       "properties": {
-        "id": {
-          "type": "number"
-        },
-        "material": {
-          "$ref": "#/definitions/VendorMaterial"
-        },
         "type": {
-          "description": "-- Материал дистанционной рамки, см. например https://www.glastory.net/insulating-glass-spacers-all-you-wanted-to-know/ и https://glazingmag.ru/distantsionnaya-ramka-dlya-steklopaketa-vidy-i-naznachenie/ и https://okna-blitz.ru/drugoe/distantsionnye-ramki-dlya-steklopaketov-razmery-i-vidy.html",
-          "anyOf": [
-            {
-              "const": "Aluminum"
-            },
-            {
-              "const": "Warm edge"
-            },
-            {
-              "const": "Stainless steel warm edge"
-            },
-            {
-              "const": "Plastic-metal hybrid warm edge"
-            },
-            {
-              "const": "Flexible warm edge"
-            },
-            {
-              "const": "TPS"
-            }
-          ]
+          "const": "Spacer"
         },
-        "size": {
-          "description": "-- Ширина рамки",
-          "type": "number"
+        "vendorName": {
+          "type": "string"
         },
-        "thickness": {
-          "description": "-- Толщина стенки",
-          "type": "number"
+        "article": {
+          "type": "string"
         },
-        "weight": {
-          "description": "Вес 1 п.м.",
-          "type": "number"
+        "features": {
+          "$ref": "features.spacer.owsp.schema.json"
         }
       },
-      "additionalProperties": false,
       "required": [
-        "material",
-        "type",
-        "size"
+        "type"
+      ]
+    },
+    "Hardware": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Hardware"
+        },
+        "vendorName": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        },
+        "features": {
+          "$ref": "features.hardware.owsp.schema.json"
+        }
+      },
+      "required": [
+        "type"
       ]
     },
     "Color": {
@@ -582,6 +542,20 @@
         }
       ]
     },
+    "BeamFeature": {
+      "type": "object",
+      "properties": {
+        "profile": {
+          "$ref": "#/definitions/VendorMaterial"
+        },
+        "k-wert": {
+          "type": "number"
+        },
+        "cammern": {
+          "type": "number"
+        }
+      }
+    },
     "Beam": {
       "type": "object",
       "properties": {
@@ -598,6 +572,15 @@
               "$ref": "#/definitions/CuttingType"
             }
           }
+        },
+        "baseColor": {
+          "type": "string"
+        },
+        "internalColor": {
+          "type": "string"
+        },
+        "externalColor": {
+          "type": "string"
         }
       }
     },
@@ -740,13 +723,13 @@
         "type": {
           "const": "Filling"
         },
+        "glazing": {
+          "type": "number"
+        },
         "fillingType": {
           "const": "Glazing"
         },
         "thickness": {
-          "type": "number"
-        },
-        "glazing": {
           "type": "number"
         },
         "glazingBeads": {
@@ -768,13 +751,13 @@
         "type": {
           "const": "Filling"
         },
+        "panel": {
+          "type": "number"
+        },
         "fillingType": {
           "const": "Panel"
         },
         "thickness": {
-          "type": "number"
-        },
-        "panel": {
           "type": "number"
         },
         "glazingBeads": {

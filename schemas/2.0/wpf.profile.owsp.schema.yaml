@@ -1,0 +1,116 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: wpf.profile.owsp.schema.json
+title: WPF
+description: Windows Profile Shape Definition
+type: object
+properties:
+  outer:
+    $ref: '#/definitions/Shape'
+  inner:
+    type: array
+    items:
+      $ref: '#/definitions/Shape'
+  profile:
+    $ref: '#/definitions/Profile'
+definitions:
+  Shape:
+    type: object
+    properties:
+      uri:
+        type: string
+        description: base64 encoded json of shapeBuffer format
+      byteLength:
+        type: number
+        minimum: 1
+    required:
+      - byteLength
+  Point:
+    type: object
+    properties:
+      x:
+        type: number
+      y:
+        type: number
+  Profile:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/Frame'
+      - $ref: '#/definitions/Mullion'
+  Frame:
+    type: object
+    properties:
+      type:
+        const: Frame
+      a:
+        $ref: '#/definitions/Point'
+      b:
+        $ref: '#/definitions/Point'
+      c:
+        $ref: '#/definitions/Point'
+      d:
+        $ref: '#/definitions/Point'
+      w:
+        $ref: '#/definitions/Point'
+      w1:
+        $ref: '#/definitions/Point'
+      gl:
+        $ref: '#/definitions/Point'
+      dich:
+        $ref: '#/definitions/Point'
+      arm:
+        $ref: '#/definitions/Point'
+      flu:
+        $ref: '#/definitions/Point'
+      fR:
+        $ref: '#/definitions/Shape'
+    required:
+      - a
+      - b
+      - c
+      - d
+      - w
+      - w1
+      - gl
+      - dich
+      - arm
+      - flu
+      - fR
+  Mullion:
+    type: object
+    properties:
+      type:
+        const: Mullion
+      a:
+        $ref: '#/definitions/Point'
+      b:
+        $ref: '#/definitions/Point'
+      c:
+        $ref: '#/definitions/Point'
+      d:
+        $ref: '#/definitions/Point'
+      w:
+        $ref: '#/definitions/Point'
+      w1:
+        $ref: '#/definitions/Point'
+      gl:
+        $ref: '#/definitions/Point'
+      dich:
+        $ref: '#/definitions/Point'
+      arm:
+        $ref: '#/definitions/Point'
+      flu:
+        $ref: '#/definitions/Point'
+      fR:
+        $ref: '#/definitions/Shape'
+    required:
+      - a
+      - b
+      - c
+      - d
+      - w
+      - w1
+      - gl
+      - dich
+      - arm
+      - flu
+      - fR

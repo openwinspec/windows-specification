@@ -1,0 +1,119 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: profile.owsp.schema.json
+title: profile definition
+description: Schema of profiles configuration
+type: object
+properties:
+  vendor:
+    type: string
+    description: Уникальный номер поставщика
+  systems:
+    type: array
+    items:
+      $ref: '#/definitions/System'
+  profiles:
+    type: array
+    items:
+      $ref: '#/definitions/Profile'
+  hash:
+    type: string
+definitions:
+  System:
+    type: object
+    properties:
+      name:
+        type: string
+
+  Frame:
+    type: object
+    properties:
+      a:
+        type: number
+      b:
+        type: number
+      c:
+        type: number
+      d:
+        type: number
+      w:
+        type: number
+      w1:
+        type: number
+      w2:
+        type: number
+      cammern:
+        type: number
+      k-wert:
+        type: number
+
+  Sash:
+    type: object
+    properties:
+      a:
+        type: number
+      b:
+        type: number
+      c:
+        type: number
+      d:
+        type: number
+      w:
+        type: number
+      w1:
+        type: number
+      w2:
+        type: number
+
+  Mullion:
+    type: object
+    properties:
+      a:
+        type: number
+      b:
+        type: number
+      c:
+        type: number
+      d:
+        type: number
+      w:
+        type: number
+      w1:
+        type: number
+      w2:
+        type: number
+
+  Sizes:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/Frame'
+      - $ref: '#/definitions/Sash'
+      - $ref: '#/definitions/Mullion'
+
+  Profile:
+    type: object
+    properties:
+      article:
+        description: Артикул в учетных системах поставщика
+        type: string
+      name:
+        description: Название в учетных системах поставщика
+        type: string
+      type:
+        anyOf:
+          - const: 'Frame'
+          - const: 'Sliding Frame'
+          - const: 'Sash'
+          - const: 'Mullion'
+          - const: 'GlazingBead'
+          - const: 'Reinforcement'
+          - const: 'PseudoMullion'
+          - const: 'Coupling'
+          - const: 'Extension'
+      systems:
+        type: array
+        items:
+          type: number
+      sizes:
+        $ref: '#/definitions/Sizes'
+      features:
+        $ref: 'features.profile.owsp.schema.json'

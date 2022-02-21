@@ -1,0 +1,12 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: features.reinforcement.owsp.schema.json
+title: definition of reinforcement features
+description: Schema of reinforcement features
+type: object
+properties:
+  thickness:
+    type: number
+  lx:
+    type: number
+  ly:
+    type: number

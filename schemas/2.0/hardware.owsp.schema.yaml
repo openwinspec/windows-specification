@@ -1,0 +1,4 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: hardware.owsp.schema.json
+title: hardware definition
+description: Schema of hardware configuration

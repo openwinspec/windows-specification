@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glass.owsp.schema.json",
+  "title": "glass definition",
+  "description": "Schema of glass configuration"
+}

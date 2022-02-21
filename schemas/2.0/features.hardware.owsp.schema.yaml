@@ -1,0 +1,10 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: features.hardware.owsp.schema.json
+title: definition of hardware features
+description: Schema of hardware features
+type: object
+properties:
+  system:
+    type: string
+  color:
+    type: string

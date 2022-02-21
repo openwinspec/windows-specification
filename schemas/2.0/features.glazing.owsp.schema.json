@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "features.glazing.owsp.schema.json",
+  "title": "definition of glazing features",
+  "description": "Schema of glazing features",
+  "type": "object",
+  "properties": {
+    "chambersCount": {
+      "type": "number"
+    },
+    "thickness": {
+      "type": "number"
+    },
+    "uw": {
+      "description": "u-wert",
+      "type": "number"
+    },
+    "color": {
+      "type": "string"
+    }
+  }
+}

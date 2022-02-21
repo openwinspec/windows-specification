@@ -1,0 +1,25 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: features.glass.owsp.schema.json
+title: definition of glass features
+description: Schema of glass features
+type: object
+properties:
+  thickness:
+    type: number
+  type:
+    description: -- Тип стекла, ниже из классификации по https://www.doubleglazingnetwork.com/blog/window-glass-types/
+    anyOf:
+      - const: 'Float Glass'
+      - const: 'Laminated Safety Glass'
+      - const: 'Obscured Glass'
+      - const: 'Tinted Glass'
+      - const: 'Tempered Glass'
+      - const: 'Insulated Glass'
+      - const: 'Mirrored Glass'
+      - const: 'Low-E Glass'
+      - const: 'Wired Glass'
+  uw:
+    description: u-wert
+    type: number
+  color:
+    type: string

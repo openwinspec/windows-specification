@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reinforcement.owsp.schema.json",
+  "title": "reinforcement definition",
+  "description": "Schema of reinforcements configuration"
+}

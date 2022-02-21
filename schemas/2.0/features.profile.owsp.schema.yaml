@@ -1,0 +1,17 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: features.profile.owsp.schema.json
+title: definition of profile features
+description: Schema of profile features
+type: object
+properties:
+  chambersCount:
+    type: number
+  width:
+    type: number
+  height:
+    type: number
+  uw:
+    description: u-wert
+    type: number
+  color:
+    type: string

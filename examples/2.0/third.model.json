@@ -1,0 +1,210 @@
+{
+  "vendors": [
+    {
+      "name": "VEKA",
+      "type": "Profile",
+      "version": "1.0.0",
+      "data": { "uri": "https://veka.org/profiles" }
+    },
+    {
+      "name": "REHAU",
+      "type": "Profile",
+      "version": "1.0.0",
+      "data": {
+        "vendor": "REHAU",
+        "systems": [{ "name": "Delight" }, { "name": "Grazio" }],
+        "profiles": [
+          {
+            "article": "554008",
+            "name": "Рама 60 Delight Design",
+            "systems": [0, 1],
+            "type": "Frame",
+            "sizes": {
+              "a": 60,
+              "b": 32,
+              "c": 40,
+              "d": 45,
+              "w": 70,
+              "w1": 56,
+              "w2": 56
+            }
+          },
+          {
+            "article": "554018",
+            "name": "Створка 58 Delight Design в качестве рамы",
+            "systems": [0],
+            "type": "Sash",
+            "sizes": {
+              "a": 78,
+              "b": 50,
+              "c": 58,
+              "d": 63,
+              "e": 20,
+              "w": 70,
+              "w1": 56,
+              "w2": 56
+            }
+          },
+          {
+            "article": "554028",
+            "name": "Импост 78 Delight Design",
+            "systems": [0],
+            "type": "Mullion",
+            "sizes": {
+              "a": 39,
+              "b": 11,
+              "c": 19,
+              "d": 24,
+              "w": 70,
+              "w1": 56,
+              "w2": 56
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "materials": [
+    {
+      "type": "Profile",
+      "vendorName": "REHAU",
+      "features": { "chambersCount": 4, "height": 60 },
+      "article": "554008"
+    },
+    {
+      "type": "Profile",
+      "vendorName": "REHAU",
+      "features": { "chambersCount": 4 },
+      "article": "554018"
+    },
+    {
+      "type": "Profile",
+      "vendorName": "REHAU",
+      "features": { "chambersCount": 4 },
+      "article": "554028"
+    },
+    {
+      "type": "Profile",
+      "vendorName": "REHAU",
+      "article": "560600"
+    },
+    {
+      "type": "Profile",
+      "vendorName": "VEKA",
+      "features": { "chambersCount": 4 }
+    },
+    {
+      "type": "Glazing",
+      "vendorName": "STIS",
+      "features": { "chambersCount": 2, "thickness": 32 }
+    },
+    {
+      "type": "Panel",
+      "vendorName": "SORTON",
+      "features": { "thickness": 32, "color": "white" }
+    }
+  ],
+  "constructions": [
+    {
+      "elements": [
+        {
+          "components": {
+            "type": "Frame",
+            "geometry": {
+              "sides": [
+                { "start": {}, "end": { "z": 1500 } },
+                { "start": { "z": 1500 }, "end": { "x": 1500, "z": 1500 } },
+                { "start": { "x": 1500, "z": 1500 }, "end": { "x": 1500 } },
+                { "start": { "x": 1500 }, "end": {} }
+              ],
+              "closed": true
+            },
+            "beams": [
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              {
+                "profile": 0,
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              },
+              { "profile": 0, "cuttings": { "start": "Angle", "end": "Angle" } }
+            ],
+            "drained": true,
+            "sillStub": false,
+            "components": [
+              {
+                "type": "Mullion",
+                "geometry": {
+                  "start": { "x": 750 },
+                  "end": { "x": 750, "z": 1500 }
+                },
+                "beam": {
+                  "profile": 2,
+                  "cuttings": { "start": "Inner", "end": "Inner" }
+                },
+                "components": [
+                  {
+                    "type": "Sash",
+                    "beams": [
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      },
+                      {
+                        "profile": 1,
+                        "cuttings": { "start": "Angle", "end": "Angle" }
+                      }
+                    ],
+                    "components": [
+                      {
+                        "type": "Mullion",
+                        "geometry": {
+                          "start": { "z": 500 },
+                          "end": { "x": 750, "z": 500 }
+                        },
+                        "beam": {
+                          "profile": 2,
+                          "cuttings": { "start": "Inner", "end": "Inner" }
+                        },
+                        "components": [
+                          {
+                            "type": "Filling",
+                            "fillingType": "Glazing",
+                            "thickness": 24,
+                            "glazing": 6,
+                            "glazingBeads": 4
+                          },
+                          {
+                            "type": "Filling",
+                            "fillingType": "Panel",
+                            "thickness": 24,
+                            "panel": 7,
+                            "glazingBeads": [4, 4, 4, 4]
+                          }
+                        ]
+                      }
+                    ],
+                    "openingType": "TiltAndTurn"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
