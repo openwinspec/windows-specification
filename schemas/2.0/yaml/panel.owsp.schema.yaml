@@ -1,0 +1,35 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: panel.owsp.schema.json
+title: panel definition
+description: Schema of panels configuration
+type: object
+properties:
+  vendor:
+    type: string
+    description: Уникальный номер поставщика
+  panels:
+    type: array
+    items:
+      $ref: '#/definitions/Panel'
+  hash:
+    type: string
+definitions:
+  Panel:
+    type: object
+    description: -- Заполнения
+    properties:
+      article:
+        type: string
+      type:
+        description: -- Вводим тип панели?
+        type: string
+      thickness:
+        type: number
+      weight:
+        description: -- Вес 1 м2
+        type: number
+    additionalProperties: false
+    required:
+      - article
+      - type
+      - thickness

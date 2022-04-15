@@ -655,15 +655,40 @@ definitions:
       - const: 'Outer'
       - const: 'Sheep'
 
-  BeamFeature:
+  # BeamFeature:
+  #   type: object
+  #   properties:
+  #     profile:
+  #       $ref: '#/definitions/VendorMaterial'
+  #     k-wert:
+  #       type: number
+  #     cammern:
+  #       type: number
+
+  BeamAssembly:
     type: object
     properties:
-      profile:
-        $ref: '#/definitions/VendorMaterial'
-      k-wert:
+      start:
+        anyOf:
+          - const: 'WeldingConnection'
+          - const: 'MechanicalConnection'
+      end:
+        anyOf:
+          - const: 'WeldingConnection'
+          - const: 'MechanicalConnection'
+
+  Assembly:
+    type: object
+    properties:
+      beam1:
         type: number
-      cammern:
+      beam2:
         type: number
+      type:
+        oneOf:
+          - const: 'WeldingConnection'
+          - const: 'MechanicalConnection'
+          - const: 'MechanicalJoint'
 
   Beam:
     type: object
@@ -672,6 +697,8 @@ definitions:
       #   $ref: '#/definitions/BeamFeature'
       profile:
         type: number
+      assemblyType:
+        $ref: '#/definitions/BeamAssembly'
       cuttings:
         type: object
         properties:
@@ -702,6 +729,10 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Beam'
+      assemblies:
+        type: array
+        items:
+          $ref: '#/definitions/Assembly'
       components:
         type: array
         items:
@@ -718,8 +749,8 @@ definitions:
       compensationHole:
         type: boolean
         description: Наличие компенсационных отверстий
-      profiles:
-        $ref: '#/definitions/BeamsProfiles'
+      # profiles:
+      #   $ref: '#/definitions/BeamsProfiles'
     additionalProperties: false
     required:
       - type
@@ -739,6 +770,12 @@ definitions:
           - const: 'TiltTop'
           - const: 'TiltAndTurn'
           - const: 'FixedCasement'
+      openingSide:
+        anyOf:
+          - const: 'Left'
+          - const: 'Right'
+          - const: 'Up'
+          - const: 'Down'
       beams:
         type: array
         items:
@@ -768,8 +805,8 @@ definitions:
       calcWind:
         type: boolean
         description: -- Расчет ветровой нагрузки
-      profiles:
-        $ref: '#/definitions/BeamsProfiles'
+      # profiles:
+      #   $ref: '#/definitions/BeamsProfiles'
     additionalProperties: false
     required:
       - type
@@ -786,8 +823,8 @@ definitions:
         const: 'Glazing'
       thickness:
         type: number
-      glazingBeads:
-        $ref: '#/definitions/BeamsProfiles'
+      # glazingBeads:
+      #   $ref: '#/definitions/BeamsProfiles'
     additionalProperties: false
     required:
       - type
@@ -807,8 +844,8 @@ definitions:
         const: 'Panel'
       thickness:
         type: number
-      glazingBeads:
-        $ref: '#/definitions/BeamsProfiles'
+      # glazingBeads:
+      #   $ref: '#/definitions/BeamsProfiles'
     additionalProperties: false
     required:
       - type

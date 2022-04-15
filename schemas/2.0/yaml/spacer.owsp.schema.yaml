@@ -1,0 +1,51 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: spacer.owsp.schema.json
+title: spacer definition
+description: Schema of spacer configuration
+type: object
+properties:
+  vendor:
+    type: string
+    description: Уникальный номер поставщика
+  spacers:
+    type: array
+    items:
+      $ref: '#/definitions/Spacer'
+  hash:
+    type: string
+definitions:
+  Spacer:
+    type: object
+    description: -- Дистанционная рамка
+    properties:
+      article:
+        type: string
+      type:
+        description: -- Материал дистанционной рамки, см. например
+          https://www.glastory.net/insulating-glass-spacers-all-you-wanted-to-know/
+          и
+          https://glazingmag.ru/distantsionnaya-ramka-dlya-steklopaketa-vidy-i-naznachenie/
+          и
+          https://okna-blitz.ru/drugoe/distantsionnye-ramki-dlya-steklopaketov-razmery-i-vidy.html
+        anyOf:
+          - const: 'Aluminum'
+          - const: 'Warm edge'
+          - const: 'Stainless steel warm edge'
+          - const: 'Plastic-metal hybrid warm edge'
+          - const: 'Flexible warm edge'
+          - const: 'TPS'
+      size:
+        description: -- Ширина рамки
+        type: number
+      thickness:
+        description: -- Толщина стенки
+        type: number
+      weight:
+        description: Вес 1 п.м.
+        type: number
+      features:
+        $ref: 'features.spacer.owsp.schema.json'
+    required:
+      - article
+      - type
+      - size

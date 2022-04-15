@@ -1,0 +1,78 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: assembly.profile.owsp.schema.json
+title: definition of profile assembly
+description: Schema of assembly definitions for profile systems
+type: object
+oneOf:
+  - $ref: '#/definitions/MechanicalJoint'
+  - $ref: '#/definitions/WeldingConnection'
+  - $ref: '#/definitions/MechanicalConnection'
+
+definitions:
+  Items:
+    type: array
+    items:
+      type: object
+      properties:
+        article:
+          type: string
+        quantity:
+          type: number
+        optional:
+          type: boolean
+        alternative:
+          $ref: '#/definitions/Items'
+
+  MechanicalJoint:
+    type: object
+    description: 'Mechanical joint e.g. mechanical joint of mullion with frame'
+    properties:
+      type:
+        const: 'MechanicalJoint'
+      name:
+        type: string
+      profile1:
+        type: string
+      profile2:
+        type: string
+      profile1_size_delta:
+        description: Коррекция размера если соединитель предполагает ее коррекцию, может быть и отрицательным ?
+        type: number
+      profile2_size_delta:
+        type: number
+      items:
+        $ref: '#/definitions/Items'
+
+  WeldingConnection:
+    type: object
+    description: 'Joining profiles by welding, may have weldable embedded parts, e.g. door sash'
+    properties:
+      type:
+        const: 'WeldingConnection'
+      name:
+        type: string
+      profile1:
+        type: string
+      profile2:
+        type: string
+      cutting:
+        type: string
+      items:
+        $ref: '#/definitions/Items'
+
+  MechanicalConnection:
+    type: object
+    description: 'Joining profiles by mechanical connector, e.g. aluminium'
+    properties:
+      type:
+        const: 'MechanicalConnection'
+      name:
+        type: string
+      profile1:
+        type: string
+      profile2:
+        type: string
+      cutting:
+        type: string
+      items:
+        $ref: '#/definitions/Items'

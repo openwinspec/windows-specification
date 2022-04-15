@@ -6,11 +6,35 @@
     },
     {
       "fileMatch": ["/examples/2.0/*.model.json"],
-      "url": "/schemas/2.0/owsp.schema.json"
+      "url": "/schemas/2.0/json/owsp.schema.json"
     },
     {
-      "fileMatch": ["/examples/2.0/*.profiles.json"],
-      "url": "/schemas/2.0/profile.owsp.schema.json"
+      "fileMatch": ["/examples/2.0/*.profile.json"],
+      "url": "/schemas/2.0/json/profile.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.glass.json"],
+      "url": "/schemas/2.0/json/glass.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.glazing.json"],
+      "url": "/schemas/2.0/json/glazing.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.panel.json"],
+      "url": "/schemas/2.0/json/panel.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.spacer.json"],
+      "url": "/schemas/2.0/json/spacer.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.hardware.json"],
+      "url": "/schemas/2.0/json/hardware.owsp.schema.json"
+    },
+    {
+      "fileMatch": ["/examples/2.0/*.reinforcement.json"],
+      "url": "/schemas/2.0/json/reinforcement.owsp.schema.json"
     }
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",

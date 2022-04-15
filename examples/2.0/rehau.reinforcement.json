@@ -1,0 +1,12 @@
+{
+  "vendor": "REHAU",
+  "reinforcements": [
+    {
+      "article": "01",
+      "h": 20,
+      "w": 35,
+      "profiles": [{ "article": "245536", "vendor": "REHAU" }],
+      "features": { "thickness": 1.5 }
+    }
+  ]
+}

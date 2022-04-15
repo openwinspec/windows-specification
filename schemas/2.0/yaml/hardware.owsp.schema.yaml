@@ -1,0 +1,66 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: hardware.owsp.schema.json
+title: hardware definition
+description: Schema of hardware configuration
+type: object
+properties:
+  vendor:
+    type: string
+    description: Уникальный номер поставщика
+  hardwares:
+    type: array
+    items:
+      $ref: '#/definitions/Hardware'
+  hash:
+    type: string
+definitions:
+  Hardware:
+    type: object
+    properties:
+      article:
+        type: string
+      material:
+        $ref: '#/definitions/Material'
+      features:
+        $ref: 'features.hardware.owsp.schema.json'
+  Material:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/Hasp'
+      - $ref: '#/definitions/Clip'
+    required:
+      - type
+  Systems:
+    type: array
+    items:
+      type: string
+  Hasp:
+    type: object
+    properties:
+      type:
+        const: 'Hasp'
+      min_height:
+        type: number
+      max_height:
+        type: number
+      length:
+        type: number
+      grif_position:
+        type: number
+      pins:
+        type: number
+      systems:
+        type: array
+        items:
+          type: string
+  Clip:
+    type: object
+    properties:
+      type:
+        const: 'Clip'
+      min_width:
+        type: number
+      max_width:
+        type: number
+      length:
+        type: number

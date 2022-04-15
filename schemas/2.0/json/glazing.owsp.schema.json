@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "glazing.owsp.schema.json",
+  "title": "glazing definition",
+  "description": "Schema of glazing configuration",
+  "type": "object",
+  "properties": {
+    "vendor": {
+      "type": "string",
+      "description": "Уникальный номер поставщика"
+    },
+    "glazings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Glazing"
+      }
+    },
+    "hash": {
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "Glass": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        }
+      }
+    },
+    "Spacer": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        }
+      }
+    },
+    "Glazing": {
+      "type": "object",
+      "properties": {
+        "article": {
+          "type": "string"
+        },
+        "thickness": {
+          "type": "number"
+        },
+        "glasses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Glass"
+          }
+        },
+        "spacer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Spacer"
+          }
+        },
+        "features": {
+          "$ref": "features.glazing.owsp.schema.json"
+        }
+      },
+      "required": [
+        "article",
+        "thickness",
+        "glasses"
+      ]
+    }
+  }
+}

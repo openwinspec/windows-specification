@@ -542,17 +542,52 @@
         }
       ]
     },
-    "BeamFeature": {
+    "BeamAssembly": {
       "type": "object",
       "properties": {
-        "profile": {
-          "$ref": "#/definitions/VendorMaterial"
+        "start": {
+          "anyOf": [
+            {
+              "const": "WeldingConnection"
+            },
+            {
+              "const": "MechanicalConnection"
+            }
+          ]
         },
-        "k-wert": {
+        "end": {
+          "anyOf": [
+            {
+              "const": "WeldingConnection"
+            },
+            {
+              "const": "MechanicalConnection"
+            }
+          ]
+        }
+      }
+    },
+    "Assembly": {
+      "type": "object",
+      "properties": {
+        "beam1": {
           "type": "number"
         },
-        "cammern": {
+        "beam2": {
           "type": "number"
+        },
+        "type": {
+          "oneOf": [
+            {
+              "const": "WeldingConnection"
+            },
+            {
+              "const": "MechanicalConnection"
+            },
+            {
+              "const": "MechanicalJoint"
+            }
+          ]
         }
       }
     },
@@ -561,6 +596,9 @@
       "properties": {
         "profile": {
           "type": "number"
+        },
+        "assemblyType": {
+          "$ref": "#/definitions/BeamAssembly"
         },
         "cuttings": {
           "type": "object",
@@ -607,6 +645,12 @@
             "$ref": "#/definitions/Beam"
           }
         },
+        "assemblies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Assembly"
+          }
+        },
         "components": {
           "type": "array",
           "items": {
@@ -628,9 +672,6 @@
         "compensationHole": {
           "type": "boolean",
           "description": "Наличие компенсационных отверстий"
-        },
-        "profiles": {
-          "$ref": "#/definitions/BeamsProfiles"
         }
       },
       "additionalProperties": false,
@@ -663,6 +704,22 @@
             },
             {
               "const": "FixedCasement"
+            }
+          ]
+        },
+        "openingSide": {
+          "anyOf": [
+            {
+              "const": "Left"
+            },
+            {
+              "const": "Right"
+            },
+            {
+              "const": "Up"
+            },
+            {
+              "const": "Down"
             }
           ]
         },
@@ -706,9 +763,6 @@
         "calcWind": {
           "type": "boolean",
           "description": "-- Расчет ветровой нагрузки"
-        },
-        "profiles": {
-          "$ref": "#/definitions/BeamsProfiles"
         }
       },
       "additionalProperties": false,
@@ -731,9 +785,6 @@
         },
         "thickness": {
           "type": "number"
-        },
-        "glazingBeads": {
-          "$ref": "#/definitions/BeamsProfiles"
         }
       },
       "additionalProperties": false,
@@ -759,9 +810,6 @@
         },
         "thickness": {
           "type": "number"
-        },
-        "glazingBeads": {
-          "$ref": "#/definitions/BeamsProfiles"
         }
       },
       "additionalProperties": false,

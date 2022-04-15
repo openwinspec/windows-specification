@@ -1,0 +1,456 @@
+{
+  "vendor": "REHAU",
+  "systems": [
+    { "name": "Delight" },
+    { "name": "Grazio" },
+    { "name": "Doors 70" }
+  ],
+  "profiles": [
+    {
+      "article": "554008",
+      "name": "Рама 60 Delight Design",
+      "systems": [0],
+      "type": "Frame",
+      "sizes": {
+        "a": 60,
+        "b": 32,
+        "c": 40,
+        "d": 45,
+        "w": 70,
+        "w1": 56,
+        "w2": 56
+      },
+      "cammern": 4,
+      "reinforcement": [{ "article": "245536" }, { "article": "245526" }],
+      "features": {
+        "chambersCount": 4,
+        "color": "white",
+        "width": 70,
+        "height": 60,
+        "uw": 1.18
+      }
+    },
+    {
+      "article": "554108",
+      "name": "Рама 68",
+      "systems": [2],
+      "type": "Frame",
+      "sizes": {
+        "a": 68,
+        "b": 40,
+        "c": 48,
+        "d": 53,
+        "w": 70,
+        "w1": 54,
+        "w2": 54
+      },
+      "cammern": 5,
+      "reinforcement": [
+        { "article": "244506" },
+        { "article": "244516" },
+        { "article": "244526" },
+        { "article": "244536" },
+        { "article": "237091" },
+        { "article": "249934" }
+      ],
+      "features": {
+        "chambersCount": 5,
+        "color": "white",
+        "height": 68,
+        "width": 70
+      }
+    },
+    {
+      "article": "554028",
+      "name": "Импост 78",
+      "systems": [2],
+      "type": "Mullion",
+      "sizes": {
+        "a": 39,
+        "b": 11,
+        "c": 19,
+        "d": 24,
+        "w": 70,
+        "w1": 54,
+        "w2": 54
+      },
+      "cammern": 5,
+      "reinforcement": [
+        { "article": "245526" },
+        { "article": "245536" },
+        { "article": "239583" },
+        { "article": "261709" },
+        { "article": "261831" },
+        { "article": "261841" }
+      ],
+      "features": { "chambersCount": 5, "color": "white", "width": 70 }
+    },
+    {
+      "article": "554018",
+      "name": "Створка 58 Delight Design в качестве рамы",
+      "systems": [0],
+      "type": "Sash",
+      "sizes": {
+        "a": 78,
+        "b": 50,
+        "c": 58,
+        "d": 63,
+        "e": 20,
+        "w": 70,
+        "w1": 56,
+        "w2": 56
+      },
+      "features": {
+        "chambersCount": 4,
+        "color": "white",
+        "width": 70,
+        "uw": 1.18
+      }
+    },
+    {
+      "article": "505160",
+      "name": "Створка входной двери Z",
+      "systems": [2],
+      "type": "Sash",
+      "sizes": {
+        "a": 116,
+        "b": 88,
+        "c": 96,
+        "d": 101,
+        "e": 20,
+        "w": 70,
+        "w1": 54,
+        "w2": 54
+      },
+      "reinforcement": [
+        { "article": "241776" },
+        { "article": "246310" },
+        { "article": "251886" },
+        { "article": "245963" }
+      ],
+      "features": { "chambersCount": 4, "color": "white", "width": 70 }
+    },
+    {
+      "article": "505170",
+      "name": "Створка входной двери T",
+      "systems": [2],
+      "type": "Sash",
+      "sizes": {
+        "a": 116,
+        "b": 88,
+        "c": 96,
+        "d": 101,
+        "e": 20,
+        "w": 70,
+        "w1": 54,
+        "w2": 54
+      },
+      "reinforcement": [
+        { "article": "241776" },
+        { "article": "246310" },
+        { "article": "251886" },
+        { "article": "245963" }
+      ],
+      "features": { "chambersCount": 4, "color": "white", "width": 70 }
+    },
+    {
+      "article": "554028",
+      "name": "Импост 78 Delight Design",
+      "systems": [0],
+      "type": "Mullion",
+      "sizes": {
+        "a": 39,
+        "b": 11,
+        "c": 19,
+        "d": 24,
+        "w": 70,
+        "w1": 56,
+        "w2": 56
+      },
+      "features": {
+        "chambersCount": 4,
+        "color": "white",
+        "width": 70,
+        "uw": 1.18
+      }
+    },
+    {
+      "article": "243269",
+      "name": "Порог для новостроек 70",
+      "type": "Threshold",
+      "sizes": { "a": 54, "b": 38, "c": 45.5, "w": 70 },
+      "systems": [0],
+      "features": { "color": "alu", "height": 54, "width": 70 }
+    },
+    {
+      "article": "243259",
+      "name": "Порог для санации 70",
+      "type": "Threshold",
+      "sizes": { "a": 24, "b": 8, "c": 13.5, "w": 70 },
+      "systems": [0],
+      "features": { "color": "alu", "height": 54, "width": 70 }
+    },
+    {
+      "article": "245536",
+      "name": "Армирование 35x20x1.5",
+      "type": "Reinforcement",
+      "sizes": { "w": 35 }
+    }
+  ],
+  "accessories": [
+    {
+      "article": "207546",
+      "name": "Механический соединитель импоста 78",
+      "type": "MechanicalJoint"
+    },
+    {
+      "article": "354187",
+      "name": "Механический соединитель импоста 78 и коробки 60",
+      "type": "MechanicalJoint"
+    },
+    {
+      "article": "261447",
+      "name": "Шуруп 4,2X13 без борголовки",
+      "type": "Screw",
+      "material": "Steel",
+      "diameter": 4.2,
+      "length": 13
+    },
+    {
+      "article": "260633",
+      "name": "Шуруп BZ 6,3X70 мм полная резьба",
+      "type": "Screw",
+      "diameter": 6.3,
+      "length": 70,
+      "material": "Steel"
+    },
+    {
+      "article": "264184",
+      "name": "шуруп 4,2x70 DIN 7981",
+      "type": "Screw",
+      "diameter": 4.2,
+      "length": 70,
+      "material": "Steel"
+    },
+    {
+      "article": "990019",
+      "name": "Шуруп 4,2X19",
+      "type": "Screw",
+      "material": "Steel",
+      "diameter": 4.2,
+      "length": 19
+    },
+    {
+      "article": "990032",
+      "name": "Шуруп 4,2X32",
+      "type": "Screw",
+      "material": "Steel",
+      "diameter": 4.2,
+      "length": 32
+    },
+    {
+      "article": "980019",
+      "name": "Шуруп 3,9X19",
+      "type": "Screw",
+      "material": "Steel",
+      "diameter": 3.9,
+      "length": 19
+    },
+    {
+      "article": "256866",
+      "name": "Сварной угловой соединитель",
+      "type": "CornerConnector",
+      "material": "pvc"
+    },
+    {
+      "article": "255377",
+      "name": "Винт M6x80 ISO4762",
+      "type": "Screw",
+      "material": "steel"
+    },
+    {
+      "article": "258546",
+      "name": "Палец 64x12",
+      "type": "Screw",
+      "material": "steel"
+    },
+    {
+      "article": "234300",
+      "name": "Сварной угловой соединитель створок дверей Z и T",
+      "type": "CornerConnector",
+      "material": "pvc"
+    },
+    {
+      "article": "241549",
+      "name": "Торцевой колпачок правый",
+      "type": "Cap",
+      "color": "white",
+      "material": "TPE"
+    },
+    {
+      "article": "241559",
+      "name": "Торцевой колпачок левый",
+      "type": "Cap",
+      "color": "white",
+      "material": "TPE"
+    }
+  ],
+  "assembly": [
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение рамы 60 DD и импоста 78 DD - 1",
+      "profile1": "554008",
+      "profile2": "554028",
+      "items": [
+        { "article": "207546", "quantity": 1 },
+        { "article": "260633", "quantity": 1 },
+        { "article": "261447", "quantity": 4 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение рамы 60 DD и импоста 78 DD - 2",
+      "profile1": "554008",
+      "profile2": "554028",
+      "items": [
+        { "article": "354187", "quantity": 1 },
+        { "article": "260633", "quantity": 1, "optional": true },
+        {
+          "article": "990019",
+          "quantity": 4,
+          "alternative": [{ "article": "980019", "quantity": 4 }]
+        },
+        { "article": "990032", "quantity": 3 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение рамы 60 DD и импоста 78 DD - 3",
+      "profile1": "554008",
+      "profile2": "554028",
+      "items": [
+        { "article": "354187", "quantity": 1 },
+        { "article": "260633", "quantity": 1 },
+        { "article": "990019", "quantity": 4, "optional": true },
+        { "article": "990032", "quantity": 3 }
+      ]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок рамы 60 DD",
+      "profile1": "554008",
+      "profile2": "554008"
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок створки 58 DD",
+      "profile1": "554018",
+      "profile2": "554018"
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки T 70 мм с копытом",
+      "profile1": "505170",
+      "profile2": "505170",
+      "cutting": "Angle",
+      "items": [{ "article": "234300", "quantity": 2 }]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки Z 70 мм с копытом",
+      "profile1": "505160",
+      "profile2": "505160",
+      "cutting": "Angle",
+      "items": [{ "article": "234300", "quantity": 2 }]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки T 70 мм",
+      "profile1": "505170",
+      "profile2": "505170",
+      "cutting": "Angle",
+      "items": [{ "article": "256866", "quantity": 2 }]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки T 70 мм стяжка со стороны петель",
+      "profile1": "505170",
+      "profile2": "505170",
+      "cutting": "Angle",
+      "items": [
+        { "article": "256866", "quantity": 2 },
+        { "article": "255377", "quantity": 1 },
+        { "article": "258546", "quantity": 1 }
+      ]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки Z 70 мм",
+      "profile1": "505160",
+      "profile2": "505160",
+      "cutting": "Angle",
+      "items": [{ "article": "256866", "quantity": 2 }]
+    },
+    {
+      "type": "WeldingConnection",
+      "name": "Сварное соединение балок дверной створки Z 70 мм стяжка со стороны петель",
+      "profile1": "505160",
+      "profile2": "505160",
+      "cutting": "Angle",
+      "items": [
+        { "article": "256866", "quantity": 2 },
+        { "article": "255377", "quantity": 1 },
+        { "article": "258546", "quantity": 1 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение порога входной двери для новостроек правое",
+      "profile1": "554108",
+      "profile2": "243269",
+      "items": [
+        { "article": "241549", "quantity": 1 },
+        { "article": "264184", "quantity": 2 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение порога входной двери для новостроек левое",
+      "profile1": "554108",
+      "profile2": "243269",
+      "items": [
+        { "article": "241559", "quantity": 1 },
+        { "article": "264184", "quantity": 2 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение порога входной двери для санации правое",
+      "profile1": "554108",
+      "profile2": "243259",
+      "items": [
+        { "article": "241549", "quantity": 1 },
+        { "article": "264184", "quantity": 2 }
+      ]
+    },
+    {
+      "type": "MechanicalJoint",
+      "name": "Механическое соединение порога входной двери для санации левое",
+      "profile1": "554108",
+      "profile2": "243259",
+      "profile1_size_delta": 0,
+      "profile2_size_delta": 0,
+      "items": [
+        { "article": "241559", "quantity": 1 },
+        { "article": "264184", "quantity": 2 }
+      ]
+    },
+    {
+      "type": "MechanicalConnection",
+      "name": "Механическое соединение профилей коробки 60",
+      "profile1": "554008",
+      "profile2": "554008",
+      "cutting": "Straight"
+    }
+  ]
+}

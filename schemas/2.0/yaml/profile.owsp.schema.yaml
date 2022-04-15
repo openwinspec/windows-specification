@@ -15,9 +15,23 @@ properties:
     type: array
     items:
       $ref: '#/definitions/Profile'
+  accessories:
+    type: array
+    items:
+      $ref: '#/definitions/Accessory'
+  assembly:
+    type: array
+    items:
+      $ref: 'assembly.profile.owsp.schema.json'
   hash:
     type: string
 definitions:
+  Reinforcement:
+    type: object
+    properties:
+      article:
+        type: string
+
   System:
     type: object
     properties:
@@ -40,10 +54,6 @@ definitions:
       w1:
         type: number
       w2:
-        type: number
-      cammern:
-        type: number
-      k-wert:
         type: number
 
   Sash:
@@ -82,12 +92,25 @@ definitions:
       w2:
         type: number
 
+  Threshold:
+    type: object
+    properties:
+      a:
+        type: number
+      b:
+        type: number
+      c:
+        type: number
+      w:
+        type: number
+
   Sizes:
     type: object
     oneOf:
       - $ref: '#/definitions/Frame'
       - $ref: '#/definitions/Sash'
       - $ref: '#/definitions/Mullion'
+      - $ref: '#/definitions/Threshold'
 
   Profile:
     type: object
@@ -109,11 +132,88 @@ definitions:
           - const: 'PseudoMullion'
           - const: 'Coupling'
           - const: 'Extension'
+          - const: 'Threshold'
       systems:
         type: array
         items:
           type: number
       sizes:
         $ref: '#/definitions/Sizes'
+      reinforcement:
+        type: array
+        items:
+          $ref: '#/definitions/Reinforcement'
+      cammern:
+        type: number
+      k-wert:
+        type: number
       features:
         $ref: 'features.profile.owsp.schema.json'
+      compound:
+        type: boolean
+      components:
+        type: array
+        items:
+          $ref: '#/definitions/Profile'
+
+  Screw:
+    type: object
+    properties:
+      type:
+        const: 'Screw'
+      article:
+        type: string
+      name:
+        type: string
+      diameter:
+        type: number
+      length:
+        type: number
+      material:
+        type: string
+
+  MechanicalJoint:
+    type: object
+    properties:
+      type:
+        const: 'MechanicalJoint'
+      article:
+        type: string
+      name:
+        type: string
+      weight:
+        type: number
+
+  CornerConnector:
+    type: object
+    properties:
+      type:
+        const: 'CornerConnector'
+      article:
+        type: string
+      name:
+        type: string
+      material:
+        type: string
+
+  Cap:
+    type: object
+    properties:
+      type:
+        const: 'Cap'
+      article:
+        type: string
+      name:
+        type: string
+      material:
+        type: string
+      color:
+        type: string
+
+  Accessory:
+    type: object
+    oneOf:
+      - $ref: '#/definitions/Screw'
+      - $ref: '#/definitions/MechanicalJoint'
+      - $ref: '#/definitions/CornerConnector'
+      - $ref: '#/definitions/Cap'

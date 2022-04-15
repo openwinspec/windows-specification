@@ -1,6 +1,0 @@
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "glazing.owsp.schema.json",
-  "title": "glazing definition",
-  "description": "Schema of glazing configuration"
-}

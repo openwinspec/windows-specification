@@ -1,0 +1,55 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: glass.owsp.schema.json
+title: glass definition
+description: Schema of glass configuration
+type: object
+properties:
+  vendor:
+    type: string
+    description: Уникальный номер поставщика
+  glasses:
+    type: array
+    items:
+      $ref: '#/definitions/Glass'
+  hash:
+    type: string
+definitions:
+  Glass:
+    type: object
+    description: -- Стекло, характеристики Lt-Ug см. например
+      https://www.agc-yourglass.com/en-UK/brands/energy
+    properties:
+      article:
+        type: string
+      type:
+        description: -- Тип стекла, ниже из классификации по https://www.doubleglazingnetwork.com/blog/window-glass-types/
+        anyOf:
+          - const: 'Float Glass'
+          - const: 'Laminated Safety Glass'
+          - const: 'Obscured Glass'
+          - const: 'Tinted Glass'
+          - const: 'Tempered Glass'
+          - const: 'Insulated Glass'
+          - const: 'Mirrored Glass'
+          - const: 'Low-E Glass'
+          - const: 'Wired Glass'
+      thickness:
+        type: number
+      weight:
+        description: -- Вес 1 м2
+        type: number
+      Lt:
+        type: number
+      Sf:
+        type: number
+      Lr:
+        type: number
+      Ug:
+        type: number
+      features:
+        $ref: 'features.glass.owsp.schema.json'
+    additionalProperties: false
+    required:
+      - article
+      - type
+      - thickness

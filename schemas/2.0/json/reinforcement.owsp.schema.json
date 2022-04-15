@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reinforcement.owsp.schema.json",
+  "title": "reinforcement definition",
+  "description": "Schema of reinforcements configuration",
+  "type": "object",
+  "properties": {
+    "vendor": {
+      "type": "string",
+      "description": "Уникальный номер поставщика"
+    },
+    "reinforcements": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Reinforcement"
+      }
+    },
+    "hash": {
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "vendor": {
+          "type": "string"
+        },
+        "article": {
+          "type": "string"
+        }
+      }
+    },
+    "Reinforcement": {
+      "type": "object",
+      "properties": {
+        "article": {
+          "type": "string"
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Profile"
+          }
+        },
+        "h": {
+          "type": "number"
+        },
+        "w": {
+          "type": "number"
+        },
+        "lx": {
+          "type": "number"
+        },
+        "ly": {
+          "type": "number"
+        },
+        "thickness": {
+          "type": "number"
+        },
+        "features": {
+          "$ref": "features.reinforcement.owsp.schema.json"
+        }
+      }
+    }
+  }
+}

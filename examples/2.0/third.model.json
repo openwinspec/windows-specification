@@ -110,6 +110,7 @@
         {
           "components": {
             "type": "Frame",
+            "assemblyType": "WeldingConnection",
             "geometry": {
               "sides": [
                 { "start": {}, "end": { "z": 1500 } },
@@ -119,20 +120,46 @@
               ],
               "closed": true
             },
+            "assemblies": [
+              { "type": "MechanicalConnection", "beam1": 0, "beam2": 1 },
+              { "type": "MechanicalConnection", "beam1": 2, "beam2": 1 },
+              { "type": "MechanicalJoint", "beam1": 2, "beam2": 3 },
+              { "type": "MechanicalJoint", "beam1": 0, "beam2": 3 }
+            ],
+            "profiles": [0, 0, 0, 1],
             "beams": [
               {
                 "profile": 0,
+                "assemblyType": {
+                  "start": "WeldingConnection",
+                  "end": "WeldingConnection"
+                },
                 "cuttings": { "start": "Angle", "end": "Angle" }
               },
               {
                 "profile": 0,
+                "assemblyType": {
+                  "start": "MechanicalConnection",
+                  "end": "WeldingConnection"
+                },
                 "cuttings": { "start": "Angle", "end": "Angle" }
               },
               {
                 "profile": 0,
+                "assemblyType": {
+                  "start": "WeldingConnection",
+                  "end": "WeldingConnection"
+                },
                 "cuttings": { "start": "Angle", "end": "Angle" }
               },
-              { "profile": 0, "cuttings": { "start": "Angle", "end": "Angle" } }
+              {
+                "profile": 0,
+                "assemblyType": {
+                  "start": "WeldingConnection",
+                  "end": "WeldingConnection"
+                },
+                "cuttings": { "start": "Angle", "end": "Angle" }
+              }
             ],
             "drained": true,
             "sillStub": false,
@@ -150,10 +177,12 @@
                 "components": [
                   {
                     "type": "Sash",
+                    "hardwareType": 0,
                     "beams": [
                       {
                         "profile": 1,
-                        "cuttings": { "start": "Angle", "end": "Angle" }
+                        "cuttings": { "start": "Angle", "end": "Angle" },
+                        "side": "петли"
                       },
                       {
                         "profile": 1,
